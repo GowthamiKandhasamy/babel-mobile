@@ -1,57 +1,57 @@
 package com.example.babel.ui.theme
 
-import android.app.Activity
 import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+// REMOVE the incorrect import if it exists: import kotlin.text.Typography
+
+// The import for your custom Typography object might be added automatically by the IDE
+// or you can add it manually:
+import com.example.babel.ui.theme.Typography // Make sure this line is present
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Amethyst,
+    secondary = DeepPlum,
+    tertiary = SilverAccent,
+    background = MidnightBlue,
+    surface = DeepPlum,
+    onPrimary = SilverAccent,
+    onSecondary = SilverAccent,
+    onTertiary = MidnightBlue,
+    onBackground = PaleWhite,
+    onSurface = PaleWhite
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = DeepPlum,
+    secondary = Amethyst,
+    tertiary = MysticGold,
+    background = SilverAccent,
+    surface = SilverAccent,
+    onPrimary = SilverAccent,
+    onSecondary = MidnightBlue,
+    onTertiary = MidnightBlue,
+    onBackground = MidnightBlue,
+    onSurface = MidnightBlue
 )
 
 @Composable
 fun BabelTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    darkTheme: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    val colorScheme = if (dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val context = LocalContext.current
+        if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+    } else {
+        if (darkTheme) DarkColorScheme else LightColorScheme
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
+        // This now correctly refers to the Typography object from your Type.kt file
         typography = Typography,
         content = content
     )

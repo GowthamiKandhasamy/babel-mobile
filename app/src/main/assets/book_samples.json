@@ -1,0 +1,121 @@
+[
+  {
+    "id": 1,
+    "title": "Babel",
+    "subtitle": "Or the Necessity of Violence: an Arcane History of the Oxford Translators' Revolution",
+    "authors": [
+      "R. F. Kuang"
+    ],
+    "publishedDate": "2022-08-18",
+    "isbn10": "0008501823",
+    "isbn13": "9780008501822",
+    "pageCount": 400,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=CE3HzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=CE3HzgEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English"
+  },
+  {
+    "id": 2,
+    "title": "The Night Circus",
+    "subtitle": "Escape with the epic, enchanting fantasy phenomenon",
+    "authors": [
+      "Erin Morgenstern"
+    ],
+    "publishedDate": "2011-09-15",
+    "isbn10": "1446468267",
+    "isbn13": "9781446468265",
+    "pageCount": 404,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=GwAWS6C33O4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=GwAWS6C33O4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English"
+  },
+  {
+    "id": 3,
+    "title": "The Starless Sea",
+    "subtitle": "A Novel",
+    "authors": [
+      "Erin Morgenstern"
+    ],
+    "publishedDate": "2019-11-05",
+    "isbn10": "1910701459",
+    "isbn13": "9781910701454",
+    "pageCount": 512,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=bE7jwQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=bE7jwQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English"
+  },
+  {
+    "id": 4,
+    "title": "Circe",
+    "subtitle": "N/A",
+    "authors": [
+      "Madeline Miller"
+    ],
+    "publishedDate": "2019-04-22",
+    "isbn10": "6020628957",
+    "isbn13": "9786020628950",
+    "pageCount": 546,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=GrGdDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=GrGdDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "N/A"
+  },
+  {
+    "id": 5,
+    "title": "The Song of Achilles",
+    "subtitle": "N/A",
+    "authors": [
+      "Madeline Miller"
+    ],
+    "publishedDate": "2012-04-12",
+    "isbn10": "1408826135",
+    "isbn13": "9781408826133",
+    "pageCount": 370,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=szMU9omwV0wC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=szMU9omwV0wC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English"
+  },
+  {
+    "id": 6,
+    "title": "A Darker Shade of Magic",
+    "subtitle": "N/A",
+    "authors": [
+      "V.E. Schwab"
+    ],
+    "publishedDate": "2015-02-20",
+    "isbn10": "1783295414",
+    "isbn13": "9781783295418",
+    "pageCount": 345,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=TD-_BgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=TD-_BgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English"
+  },
+  {
+    "id": 7,
+    "title": "Mistborn: Secret History",
+    "subtitle": "N/A",
+    "authors": [
+      "Brandon Sanderson"
+    ],
+    "publishedDate": "2016-08-01",
+    "isbn10": "1473221781",
+    "isbn13": "9781473221789",
+    "pageCount": 190,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=MFnADAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=MFnADAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English"
+  }
+]
