@@ -27,9 +27,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -47,6 +45,8 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -57,24 +57,115 @@ import com.example.babel.models.Book
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
+
 @Composable
 fun HomeScreen(navController: NavController) {
     val scrollState = rememberScrollState()
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        AnimatedBackground()
-        Column(
+    Scaffold(
+        topBar = { TopBar(navController, containerColor = Color.Transparent) },
+        bottomBar = { BottomBar(navController, containerColor = Color.Transparent) },
+        containerColor = Color.Transparent // keep your background visible
+    ) { paddingValues ->
+        // Preserve your current layout exactly
+        Box(
             modifier = Modifier
-                .verticalScroll(scrollState)
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(paddingValues)
         ) {
-            Spacer(modifier = Modifier.height(30.dp))
-            GreetingSection()
-            Spacer(modifier = Modifier.height(24.dp))
-            FeaturedCarousel(navController = navController)
-            Spacer(modifier = Modifier.height(32.dp))
-            CategoryGrid(navController = navController)
+            AnimatedBackground()
+
+            Column(
+                modifier = Modifier
+                    .verticalScroll(scrollState)
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                Spacer(modifier = Modifier.height(30.dp))
+                GreetingSection()
+                Spacer(modifier = Modifier.height(24.dp))
+                FeaturedCarousel(navController = navController)
+                Spacer(modifier = Modifier.height(32.dp))
+                CategoryGrid(navController = navController)
+            }
+        }
+    }
+}
+
+// -------------------- Top Bar ----------------------------
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar(navController: NavController, containerColor : Color) {
+    val colorScheme = MaterialTheme.colorScheme
+    var searchQuery by remember { mutableStateOf(TextFieldValue("")) }
+
+    TopAppBar(
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = containerColor
+        ),
+        title = {
+            TextField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                placeholder = { Text("Search books...") },
+                singleLine = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end = 60.dp)
+                    .height(48.dp),
+                // Corrected line:
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = colorScheme.surfaceVariant,
+                    unfocusedContainerColor = colorScheme.surfaceVariant,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
+                )
+            )
+        },
+        actions = {
+            Text(
+                text = "Profile",
+                color = colorScheme.primary,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .clickable {
+                        navController.navigate("profile")
+                    },
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center
+            )
+        }
+    )
+}
+
+// --------------- Bottom Bar ----------------------
+@Composable
+fun BottomBar(navController: NavController, containerColor: Color) {
+    val items = listOf("Home", "My Library", "Explore", "Journal", "Stats", "Settings")
+
+    NavigationBar(containerColor = containerColor) {
+        items.forEach { label ->
+            NavigationBarItem(
+                selected = false, // you can hook this up with current route if you wish
+                onClick = {
+                    when (label) {
+                        "Home" -> navController.navigate("home")
+                        "My Library" -> navController.navigate("library")
+                        "Explore" -> navController.navigate("explore")
+                        "Journal" -> navController.navigate("journal")
+                        "Stats" -> navController.navigate("stats")
+                        "Settings" -> navController.navigate("settings")
+                    }
+                },
+                icon = {
+                    Text(
+                        text = label,
+                        fontSize = 14.sp,
+                        modifier = Modifier.padding(4.dp)
+                    )
+                },
+                label = { Text(text = label, fontSize = 12.sp) }
+            )
         }
     }
 }
