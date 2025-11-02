@@ -23,7 +23,8 @@ private val DarkColorScheme = darkColorScheme(
     surface = DeepPlum.copy(alpha = 0.6f), // Slightly lifted surfaces
     onSurface = PaleWhite,
     surfaceVariant = DeepPlum.copy(alpha = 0.4f),
-    onSurfaceVariant = PaleWhite
+    onSurfaceVariant = PaleWhite,
+    outline = PaleWhite.copy(alpha = 0.3f)
 )
 
 // Light theme color scheme — elegant but soft
@@ -36,10 +37,11 @@ private val LightColorScheme = lightColorScheme(
     onTertiary = MidnightBlue,
     background = PaleWhite,             // Clean, subtle base
     onBackground = MidnightBlue,        // Deep readable text
-    surface = SilverAccent.copy(alpha = 0.3f),
+    surface = SilverAccent,
     onSurface = MidnightBlue,
     surfaceVariant = Amethyst.copy(alpha = 0.2f),
-    onSurfaceVariant = PaleWhite
+    onSurfaceVariant = PaleWhite,
+    outline = MidnightBlue.copy(alpha = 0.3f)
 )
 
 @Composable

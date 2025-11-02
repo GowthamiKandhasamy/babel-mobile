@@ -13,5 +13,6 @@ data class Book(
     val maturityRating: String? = null,
     val coverImage: String? = null,
     val smallThumbnail: String? = null,
-    val language: String? = null
+    val language: String? = null,
+    val genre_id: List<Int> = emptyList()
 )

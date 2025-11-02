@@ -85,6 +85,7 @@ fun BottomBar(
         NavItem("Library", Icons.Default.Menu, "library"),
         NavItem("Explore", Icons.Default.Search, "explore"),
         NavItem("Stats", Icons.Default.Info, "stats"),
+        NavItem("Journal", Icons.Default.Create, "journal"),
         NavItem("Settings", Icons.Default.Settings, "settings")
     )
 
@@ -114,8 +115,8 @@ fun BottomBar(
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = colorScheme.onPrimary,
                     selectedTextColor = colorScheme.onPrimary,
-                    unselectedIconColor = colorScheme.onPrimary.copy(alpha = 0.7f),
-                    unselectedTextColor = colorScheme.onPrimary.copy(alpha = 0.7f),
+                    unselectedIconColor = colorScheme.onPrimary.copy(alpha = 0.9f),
+                    unselectedTextColor = colorScheme.onPrimary.copy(alpha = 0.9f),
                     indicatorColor = Color.Transparent
                 )
             )

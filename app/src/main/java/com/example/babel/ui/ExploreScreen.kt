@@ -80,7 +80,12 @@ fun ExploreScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(32.dp))
 
                 // 6. Genre Grid
-                CategoryGrid(navController = navController)
+                CategoryGrid(
+                    navController = navController,
+                    context = LocalContext.current,
+                    showGenres = true
+                )
+
 
                 Spacer(modifier = Modifier.height(90.dp))
             }

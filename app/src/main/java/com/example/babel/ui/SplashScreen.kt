@@ -32,6 +32,7 @@ import com.example.babel.ui.theme.Amethyst
 import com.example.babel.ui.theme.DeepPlum
 import com.example.babel.ui.theme.MidnightBlue
 import com.example.babel.ui.theme.SilverAccent
+import com.example.babel.ui.theme.PaleWhite
 import kotlinx.coroutines.delay
 
 @Composable
@@ -88,7 +89,7 @@ fun SplashScreen(navController: NavController) {
         Text(
             text = "Babel",
             fontSize = 48.sp,
-            color = SilverAccent, // Always readable and brand-consistent
+            color = PaleWhite, // Always readable and brand-consistent
             modifier = Modifier
                 .padding(top = 250.dp)
                 .alpha(0.95f)

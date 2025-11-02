@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "name": "Fantasy",
+    "description": "Magic, mythical creatures, and epic worlds where imagination rules."
+  },
+  {
+    "id": 2,
+    "name": "Romance",
+    "description": "Love stories, emotional journeys, and complex relationships."
+  },
+  {
+    "id": 3,
+    "name": "Science Fiction",
+    "description": "Futuristic technology, space exploration, and speculative scientific possibilities."
+  },
+  {
+    "id": 4,
+    "name": "Mystery",
+    "description": "Whodunits, investigations, and suspenseful plots that keep readers guessing."
+  },
+  {
+    "id": 5,
+    "name": "Non-Fiction",
+    "description": "Real-world stories, biographies, history, and factual accounts."
+  },
+  {
+    "id": 6,
+    "name": "Historical Fiction",
+    "description": "Stories set in the past, blending real historical events with imaginative narratives."
+  },
+  {
+    "id": 7,
+    "name": "Thriller",
+    "description": "Fast-paced, high-stakes stories filled with tension, danger, and unexpected twists."
+  },
+  {
+    "id": 8,
+    "name": "Horror",
+    "description": "Dark tales designed to frighten, shock, or unsettle readers with suspense and terror."
+  },
+  {
+    "id": 9,
+    "name": "Young Adult",
+    "description": "Stories centered on teenage protagonists navigating coming-of-age experiences."
+  },
+  {
+    "id": 10,
+    "name": "Fiction",
+    "description": "Narrative works created from imagination, covering a wide range of genres and themes."
+  },
+  {
+    "id": 11,
+    "name": "Books and reading",
+    "description": "Works about literature, book culture, and the act of reading itself."
+  },
+  {
+    "id": 12,
+    "name": "Juvenile Fiction",
+    "description": "Stories aimed at children and pre-teens, often with adventure, lessons, and imagination."
+  },
+  {
+    "id": 13,
+    "name": "American fiction",
+    "description": "Fiction written by American authors, reflecting U.S. culture, history, and perspectives."
+  },
+  {
+    "id": 14,
+    "name": "College students",
+    "description": "Books featuring college life, academic settings, and young adult challenges."
+  },
+  {
+    "id": 15,
+    "name": "Artists",
+    "description": "Stories or biographies exploring the lives, struggles, and creativity of artists."
+  },
+  {
+    "id": 16,
+    "name": "Performing Arts",
+    "description": "Works focusing on theater, dance, music, and other forms of live performance."
+  },
+  {
+    "id": 17,
+    "name": "Young Adult Fiction",
+    "description": "Fiction targeted at teen readers, often addressing identity, growth, and relationships."
+  },
+  {
+    "id": 18,
+    "name": "Comics & Graphic Novels",
+    "description": "Narratives told through illustrated panels, blending art and storytelling."
+  },
+  {
+    "id": 19,
+    "name": "Genetic engineering",
+    "description": "Books exploring genetics, biotechnology, and ethical questions around modifying life."
+  },
+  {
+    "id": 20,
+    "name": "Astronauts",
+    "description": "Stories about space exploration, astronauts’ lives, and the challenges of space travel."
+  },
+  {
+    "id": 21,
+    "name": "Reference",
+    "description": "Informational works meant for consultation, research, or practical guidance."
+  },
+  {
+    "id": 22,
+    "name": "Cousins",
+    "description": "Stories exploring family relationships, especially those between cousins."
+  },
+  {
+    "id": 23,
+    "name": "Courtship",
+    "description": "Books focusing on romantic pursuit, dating, and traditional courtship rituals."
+  },
+  {
+    "id": 24,
+    "name": "Alabama",
+    "description": "Books set in or about the state of Alabama, its culture, history, and people."
+  },
+  {
+    "id": 25,
+    "name": "Literary Criticism",
+    "description": "Analyses, interpretations, and evaluations of literature and its themes."
+  },
+  {
+    "id": 26,
+    "name": "Poetry",
+    "description": "Works written in verse, expressing ideas, emotions, and stories through rhythm and imagery."
+  },
+  {
+    "id": 27,
+    "name": "History",
+    "description": "Accounts and analyses of past events, civilizations, and historical figures."
+  },
+  {
+    "id": 28,
+    "name": "Amnesia",
+    "description": "Stories exploring memory loss, identity, and the mystery of forgotten pasts."
+  }
+]

@@ -1,121 +1,1496 @@
 [
   {
-    "id": 1,
-    "title": "Babel",
-    "subtitle": "Or the Necessity of Violence: an Arcane History of the Oxford Translators' Revolution",
+    "title": "Babel: Or the Necessity of Violence: An Arcane History of the Oxford Translators\u2019 Revolution",
+    "subtitle": "N/A",
     "authors": [
-      "R. F. Kuang"
+      "R.F. Kuang"
     ],
-    "publishedDate": "2022-08-18",
-    "isbn10": "0008501823",
-    "isbn13": "9780008501822",
-    "pageCount": 400,
+    "publishedDate": "2022-09-01",
+    "isbn_10": "0008501831",
+    "isbn_13": "9780008501839",
+    "pageCount": 688,
     "printType": "BOOK",
     "maturityRating": "NOT_MATURE",
-    "coverImage": "http://books.google.com/books/content?id=CE3HzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-    "smallThumbnail": "http://books.google.com/books/content?id=CE3HzgEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-    "language": "English"
+    "coverImage": "http://books.google.com/books/content?id=YMpQEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=YMpQEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
   },
   {
-    "id": 2,
     "title": "The Night Circus",
     "subtitle": "Escape with the epic, enchanting fantasy phenomenon",
     "authors": [
       "Erin Morgenstern"
     ],
     "publishedDate": "2011-09-15",
-    "isbn10": "1446468267",
-    "isbn13": "9781446468265",
+    "isbn_10": "1446468267",
+    "isbn_13": "9781446468265",
     "pageCount": 404,
     "printType": "BOOK",
     "maturityRating": "NOT_MATURE",
     "coverImage": "http://books.google.com/books/content?id=GwAWS6C33O4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "smallThumbnail": "http://books.google.com/books/content?id=GwAWS6C33O4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "language": "English"
+    "language": "English",
+    "genre_id": [
+      10
+    ]
   },
   {
-    "id": 3,
     "title": "The Starless Sea",
     "subtitle": "A Novel",
     "authors": [
       "Erin Morgenstern"
     ],
     "publishedDate": "2019-11-05",
-    "isbn10": "1910701459",
-    "isbn13": "9781910701454",
+    "isbn_10": "1910701459",
+    "isbn_13": "9781910701454",
     "pageCount": 512,
     "printType": "BOOK",
     "maturityRating": "NOT_MATURE",
     "coverImage": "http://books.google.com/books/content?id=bE7jwQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "smallThumbnail": "http://books.google.com/books/content?id=bE7jwQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-    "language": "English"
+    "language": "English",
+    "genre_id": [
+      11
+    ]
   },
   {
-    "id": 4,
     "title": "Circe",
     "subtitle": "N/A",
     "authors": [
       "Madeline Miller"
     ],
     "publishedDate": "2019-04-22",
-    "isbn10": "6020628957",
-    "isbn13": "9786020628950",
+    "isbn_10": "6020628957",
+    "isbn_13": "9786020628950",
     "pageCount": 546,
     "printType": "BOOK",
     "maturityRating": "NOT_MATURE",
     "coverImage": "http://books.google.com/books/content?id=GrGdDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "smallThumbnail": "http://books.google.com/books/content?id=GrGdDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "language": "N/A"
+    "language": "N/A",
+    "genre_id": [
+      12
+    ]
   },
   {
-    "id": 5,
     "title": "The Song of Achilles",
     "subtitle": "N/A",
     "authors": [
       "Madeline Miller"
     ],
     "publishedDate": "2012-04-12",
-    "isbn10": "1408826135",
-    "isbn13": "9781408826133",
+    "isbn_10": "1408826135",
+    "isbn_13": "9781408826133",
     "pageCount": 370,
     "printType": "BOOK",
     "maturityRating": "NOT_MATURE",
     "coverImage": "http://books.google.com/books/content?id=szMU9omwV0wC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "smallThumbnail": "http://books.google.com/books/content?id=szMU9omwV0wC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "language": "English"
+    "language": "English",
+    "genre_id": [
+      10
+    ]
   },
   {
-    "id": 6,
     "title": "A Darker Shade of Magic",
     "subtitle": "N/A",
     "authors": [
       "V.E. Schwab"
     ],
     "publishedDate": "2015-02-20",
-    "isbn10": "1783295414",
-    "isbn13": "9781783295418",
+    "isbn_10": "1783295414",
+    "isbn_13": "9781783295418",
     "pageCount": 345,
     "printType": "BOOK",
     "maturityRating": "NOT_MATURE",
     "coverImage": "http://books.google.com/books/content?id=TD-_BgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "smallThumbnail": "http://books.google.com/books/content?id=TD-_BgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "language": "English"
+    "language": "English",
+    "genre_id": [
+      10
+    ]
   },
   {
-    "id": 7,
-    "title": "Mistborn: Secret History",
-    "subtitle": "N/A",
+    "title": "The Hero of Ages",
+    "subtitle": "Mistborn Book Three",
     "authors": [
       "Brandon Sanderson"
     ],
-    "publishedDate": "2016-08-01",
-    "isbn10": "1473221781",
-    "isbn13": "9781473221789",
-    "pageCount": 190,
+    "publishedDate": "2010-03-30",
+    "isbn_10": "0575097760",
+    "isbn_13": "9780575097766",
+    "pageCount": 697,
     "printType": "BOOK",
     "maturityRating": "NOT_MATURE",
-    "coverImage": "http://books.google.com/books/content?id=MFnADAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-    "smallThumbnail": "http://books.google.com/books/content?id=MFnADAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-    "language": "English"
+    "coverImage": "http://books.google.com/books/content?id=7wV6JAOGRTYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=7wV6JAOGRTYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Secret History",
+    "subtitle": "N/A",
+    "authors": [
+      "Donna Tartt"
+    ],
+    "publishedDate": "1992",
+    "isbn_10": null,
+    "isbn_13": null,
+    "pageCount": 556,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=JFNbAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=JFNbAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      13
+    ]
+  },
+  {
+    "title": "If We Were Villains",
+    "subtitle": "A Novel",
+    "authors": [
+      "M. L. Rio"
+    ],
+    "publishedDate": "2017-04-11",
+    "isbn_10": "1250095301",
+    "isbn_13": "9781250095305",
+    "pageCount": 368,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=negZDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=negZDQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Normal People",
+    "subtitle": "N/A",
+    "authors": [
+      "Sally Rooney"
+    ],
+    "publishedDate": "2019",
+    "isbn_10": "1785417290",
+    "isbn_13": "9781785417290",
+    "pageCount": 300,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=Z4uQwwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=Z4uQwwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      14
+    ]
+  },
+  {
+    "title": "The Goldfinch",
+    "subtitle": "N/A",
+    "authors": [
+      "Donna Tartt"
+    ],
+    "publishedDate": "2013-01-01",
+    "isbn_10": "1408704951",
+    "isbn_13": "9781408704950",
+    "pageCount": 771,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=WkUUmwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=WkUUmwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      15
+    ]
+  },
+  {
+    "title": "Never Let Me Go",
+    "subtitle": "20th anniversary edition",
+    "authors": [
+      "Kazuo Ishiguro"
+    ],
+    "publishedDate": "2009-01-08",
+    "isbn_10": "0571249388",
+    "isbn_13": "9780571249381",
+    "pageCount": 274,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=JAzxznMKiq4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=JAzxznMKiq4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Shadow of the Wind",
+    "subtitle": "N/A",
+    "authors": [
+      "Carlos Ruiz Zafon"
+    ],
+    "publishedDate": "2005-01-25",
+    "isbn_10": "1101147067",
+    "isbn_13": "9781101147061",
+    "pageCount": 514,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=ggvVsFqeCqYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=ggvVsFqeCqYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Book Thief",
+    "subtitle": "N/A",
+    "authors": [
+      "Markus Zusak"
+    ],
+    "publishedDate": "2007-09-11",
+    "isbn_10": null,
+    "isbn_13": null,
+    "pageCount": 582,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=_MnZAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=_MnZAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      12
+    ]
+  },
+  {
+    "title": "Life of Pi",
+    "subtitle": "N/A",
+    "authors": [
+      "Yann Martel"
+    ],
+    "publishedDate": "2022-01-27",
+    "isbn_10": "1350295701",
+    "isbn_13": "9781350295704",
+    "pageCount": 82,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=O8ZaEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=O8ZaEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      16
+    ]
+  },
+  {
+    "title": "Cloud Atlas",
+    "subtitle": "N/A",
+    "authors": [
+      "David Stephen Mitchell"
+    ],
+    "publishedDate": "2014",
+    "isbn_10": null,
+    "isbn_13": null,
+    "pageCount": 529,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "N/A",
+    "smallThumbnail": "N/A",
+    "language": "German",
+    "genre_id": []
+  },
+  {
+    "title": "The Kite Runner Graphic Novel",
+    "subtitle": "N/A",
+    "authors": [
+      "Khaled Hosseini"
+    ],
+    "publishedDate": "2011-09-06",
+    "isbn_10": "1101547502",
+    "isbn_13": "9781101547502",
+    "pageCount": 264,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=WQMVnG5y-60C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=WQMVnG5y-60C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Hobbit",
+    "subtitle": "N/A",
+    "authors": [
+      "J.R.R. Tolkien"
+    ],
+    "publishedDate": "2012-11-08",
+    "isbn_10": "0544115554",
+    "isbn_13": "9780544115552",
+    "pageCount": 167,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=CixXEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=CixXEAAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      17
+    ]
+  },
+  {
+    "title": "The Lord of the Rings",
+    "subtitle": "N/A",
+    "authors": [
+      "John Ronald Reuel Tolkien"
+    ],
+    "publishedDate": "2004",
+    "isbn_10": null,
+    "isbn_13": null,
+    "pageCount": 1200,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=GuLZAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=GuLZAAAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "A Game of Thrones (A Song of Ice and Fire)",
+    "subtitle": "N/A",
+    "authors": [
+      "George R.R. Martin"
+    ],
+    "publishedDate": "2017-09-21",
+    "isbn_10": "000824961X",
+    "isbn_13": "9780008249618",
+    "pageCount": 803,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=sTA2DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=sTA2DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Name of the Wind: 10th Anniversary Deluxe Edition",
+    "subtitle": "N/A",
+    "authors": [
+      "Patrick Rothfuss"
+    ],
+    "publishedDate": "2017-10-03",
+    "isbn_10": "0756413710",
+    "isbn_13": "9780756413712",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=atqOEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=atqOEAAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Eye of the World",
+    "subtitle": "Book One of 'The Wheel of Time'",
+    "authors": [
+      "Robert Jordan"
+    ],
+    "publishedDate": "2012-05-08",
+    "isbn_10": "076533433X",
+    "isbn_13": "9780765334336",
+    "pageCount": 752,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=kmE_uAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=kmE_uAAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Chronicles of Narnia Vol I: The Lion, the Witch, and the Wardrobe",
+    "subtitle": "N/A",
+    "authors": [
+      "C.S.Lewis"
+    ],
+    "publishedDate": "2016-08-12",
+    "isbn_10": "9887739561",
+    "isbn_13": "9789887739562",
+    "pageCount": 154,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=6EIoDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=6EIoDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      12
+    ]
+  },
+  {
+    "title": "A Wizard of Earthsea",
+    "subtitle": "N/A",
+    "authors": [
+      "Ursula K. Le Guin"
+    ],
+    "publishedDate": "2012",
+    "isbn_10": "0547851391",
+    "isbn_13": "9780547851396",
+    "pageCount": 267,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=FD72ekYZqIkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=FD72ekYZqIkC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      12
+    ]
+  },
+  {
+    "title": "American Gods: The Moment of the Storm",
+    "subtitle": "N/A",
+    "authors": [
+      "Neil Gaiman",
+      "P. Craig Russell"
+    ],
+    "publishedDate": "2020-06-09",
+    "isbn_10": "1472251377",
+    "isbn_13": "9781472251374",
+    "pageCount": 229,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=wpupDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=wpupDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      18
+    ]
+  },
+  {
+    "title": "Good Omens",
+    "subtitle": "N/A",
+    "authors": [
+      "Neil Gaiman",
+      "Terry Pratchett"
+    ],
+    "publishedDate": "2011-11-22",
+    "isbn_10": "1448110238",
+    "isbn_13": "9781448110230",
+    "pageCount": 420,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=B7FL6zzN_FsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=B7FL6zzN_FsC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Jonathan Strange and Mr Norrell",
+    "subtitle": "N/A",
+    "authors": [
+      "Susanna Clarke"
+    ],
+    "publishedDate": "2009-02-24",
+    "isbn_10": "1408803747",
+    "isbn_13": "9781408803745",
+    "pageCount": 1026,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=xTG1BM3u8MoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=xTG1BM3u8MoC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Dune",
+    "subtitle": "N/A",
+    "authors": [
+      "Frank Herbert"
+    ],
+    "publishedDate": "1982",
+    "isbn_10": null,
+    "isbn_13": null,
+    "pageCount": 534,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=0JUrAQAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=0JUrAQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Ender's Game",
+    "subtitle": "N/A",
+    "authors": [
+      "Orson Scott Card"
+    ],
+    "publishedDate": "2002-02",
+    "isbn_10": "0613824229",
+    "isbn_13": "9780613824224",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=cW9BPgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=cW9BPgAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      19
+    ]
+  },
+  {
+    "title": "THE LEFT HAND OF DARKNESS",
+    "subtitle": "N/A",
+    "authors": [
+      "URSULA K. LE GUIN"
+    ],
+    "publishedDate": "1976",
+    "isbn_10": null,
+    "isbn_13": null,
+    "pageCount": 324,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=X-j9eIuTMdkC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=X-j9eIuTMdkC&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": []
+  },
+  {
+    "title": "Neuromancer",
+    "subtitle": "N/A",
+    "authors": [
+      "William Gibson"
+    ],
+    "publishedDate": "2000-07-01",
+    "isbn_10": "110114646X",
+    "isbn_13": "9781101146460",
+    "pageCount": 337,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=Bd_UZAdvUDIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=Bd_UZAdvUDIC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "1984",
+    "subtitle": "N/A",
+    "authors": [
+      "George Orwell"
+    ],
+    "publishedDate": "2014-01-04",
+    "isbn_10": "1784043737",
+    "isbn_13": "9781784043735",
+    "pageCount": 361,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=uyr8BAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=uyr8BAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Brave New World",
+    "subtitle": "N/A",
+    "authors": [
+      "Aldous Huxley"
+    ],
+    "publishedDate": "2008-12-26",
+    "isbn_10": "140702101X",
+    "isbn_13": "9781407021010",
+    "pageCount": 288,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=kKh5Dyqxx-QC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=kKh5Dyqxx-QC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Fahrenheit 451",
+    "subtitle": "A Novel",
+    "authors": [
+      "Ray Bradbury"
+    ],
+    "publishedDate": "2011-11-29",
+    "isbn_10": "143914267X",
+    "isbn_13": "9781439142677",
+    "pageCount": 272,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=OYtkbGl2j0sC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=OYtkbGl2j0sC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Martian",
+    "subtitle": "N/A",
+    "authors": [
+      "Andy Weir"
+    ],
+    "publishedDate": "2014",
+    "isbn_10": "0606367209",
+    "isbn_13": "9780606367202",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=P7g_rgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=P7g_rgEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      20
+    ]
+  },
+  {
+    "title": "Foundation",
+    "subtitle": "N/A",
+    "authors": [
+      "Isaac Asimov"
+    ],
+    "publishedDate": "2004-06-01",
+    "isbn_10": "055390034X",
+    "isbn_13": "9780553900347",
+    "pageCount": 255,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=IwywDY4P6gsC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=IwywDY4P6gsC&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Snow Crash",
+    "subtitle": "N/A",
+    "authors": [
+      "Neal Stephenson"
+    ],
+    "publishedDate": "2000-05-02",
+    "isbn_10": "0553380958",
+    "isbn_13": "9780553380958",
+    "pageCount": 484,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=mqpvVydYo-8C&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=mqpvVydYo-8C&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Frankenstein",
+    "subtitle": "N/A",
+    "authors": [
+      "Mary Shelley"
+    ],
+    "publishedDate": "2004-05",
+    "isbn_10": "0743487583",
+    "isbn_13": "9780743487580",
+    "pageCount": 353,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=UL6Cwv2Z1iQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=UL6Cwv2Z1iQC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Dracula",
+    "subtitle": "N/A",
+    "authors": [
+      "Bram Stoker"
+    ],
+    "publishedDate": "2018-01-02",
+    "isbn_10": "1945186364",
+    "isbn_13": "9781945186363",
+    "pageCount": 482,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=oTKCDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=oTKCDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Wuthering Heights in Plain and Simple English (Includes Study Guide, Complete Unabridged Book, Historical Context, Biography And",
+    "subtitle": "N/A",
+    "authors": [
+      "Emily Bront\u00eb"
+    ],
+    "publishedDate": "2012-12-10",
+    "isbn_10": "1621074560",
+    "isbn_13": "9781621074564",
+    "pageCount": 614,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=S2Yvf-tWNdUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=S2Yvf-tWNdUC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      21
+    ]
+  },
+  {
+    "title": "Jane Eyre",
+    "subtitle": "N/A",
+    "authors": [
+      "Charlotte Bront\u00eb"
+    ],
+    "publishedDate": "1864",
+    "isbn_10": null,
+    "isbn_13": null,
+    "pageCount": 506,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=lSMGAAAAQAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=lSMGAAAAQAAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": []
+  },
+  {
+    "title": "Rebecca",
+    "subtitle": "N/A",
+    "authors": [
+      "Daphne du Mourier"
+    ],
+    "publishedDate": "2001",
+    "isbn_10": "0706999851",
+    "isbn_13": "9780706999853",
+    "pageCount": 160,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=TrNsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=TrNsEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      12
+    ]
+  },
+  {
+    "title": "The Picture of Dorian Gray",
+    "subtitle": "N/A",
+    "authors": [
+      "Oscar Wilde"
+    ],
+    "publishedDate": "1981",
+    "isbn_10": "0192815539",
+    "isbn_13": "9780192815538",
+    "pageCount": 268,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=icSwNbJng4wC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=icSwNbJng4wC&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Mexican Gothic",
+    "subtitle": "N/A",
+    "authors": [
+      "Silvia Moreno-Garcia"
+    ],
+    "publishedDate": "2020",
+    "isbn_10": "1529402670",
+    "isbn_13": "9781529402674",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=rrAKywEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=rrAKywEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      22
+    ]
+  },
+  {
+    "title": "Carmilla",
+    "subtitle": "Featuring First Female Vampire - Mysterious and Compelling Tale that Influenced Bram Stoker's Dracula",
+    "authors": [
+      "Joseph Sheridan Le Fanu"
+    ],
+    "publishedDate": "2023-11-26",
+    "isbn_10": null,
+    "isbn_13": null,
+    "pageCount": 104,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=ESvmEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=ESvmEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Bloody Chamber and Other Stories",
+    "subtitle": "N/A",
+    "authors": [
+      "Angela Carter"
+    ],
+    "publishedDate": "2012-10-31",
+    "isbn_10": "140901536X",
+    "isbn_13": "9781409015369",
+    "pageCount": 178,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=o0dFffiVtx4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=o0dFffiVtx4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Ninth House",
+    "subtitle": "The global sensation from the creator of Shadow and Bone",
+    "authors": [
+      "Leigh Bardugo"
+    ],
+    "publishedDate": "2019-10-08",
+    "isbn_10": "1473227992",
+    "isbn_13": "9781473227996",
+    "pageCount": 434,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=wX2IDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=wX2IDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Pride and Prejudice",
+    "subtitle": "N/A",
+    "authors": [
+      "Jane Austen"
+    ],
+    "publishedDate": "2003",
+    "isbn_10": "0881031216",
+    "isbn_13": "9780881031218",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=ertAPgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=ertAPgAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      23
+    ]
+  },
+  {
+    "title": "Emma",
+    "subtitle": "N/A",
+    "authors": [
+      "Jane Austen"
+    ],
+    "publishedDate": "2003",
+    "isbn_10": "1904633005",
+    "isbn_13": "9781904633006",
+    "pageCount": 604,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=ui8KN7WuxycC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=ui8KN7WuxycC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Sense and Sensibility",
+    "subtitle": "a Novel",
+    "authors": [
+      "Jane Austen"
+    ],
+    "publishedDate": "1833",
+    "isbn_10": null,
+    "isbn_13": null,
+    "pageCount": 372,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=bcUNAAAAQAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=bcUNAAAAQAAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": []
+  },
+  {
+    "title": "Little Women",
+    "subtitle": "N/A",
+    "authors": [
+      "Louisa May Alcott"
+    ],
+    "publishedDate": "2009-01-01",
+    "isbn_10": "1877527939",
+    "isbn_13": "9781877527937",
+    "pageCount": 927,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=WMjHdhYI8F4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=WMjHdhYI8F4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "subtitle": "N/A",
+    "authors": [
+      "Harper Lee"
+    ],
+    "publishedDate": "1982",
+    "isbn_10": "0329001183",
+    "isbn_13": "9780329001186",
+    "pageCount": 376,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=3t5dtAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=3t5dtAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      24
+    ]
+  },
+  {
+    "title": "The Great Gatsby",
+    "subtitle": "The Only Authorized Edition",
+    "authors": [
+      "F. Scott Fitzgerald"
+    ],
+    "publishedDate": "2003-05-27",
+    "isbn_10": "074324639X",
+    "isbn_13": "9780743246392",
+    "pageCount": 196,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=iXn5U2IzVH0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=iXn5U2IzVH0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "subtitle": "N/A",
+    "authors": [
+      "J. D. Salinger"
+    ],
+    "publishedDate": "2019-08-13",
+    "isbn_10": "0241988799",
+    "isbn_13": "9780241988794",
+    "pageCount": 207,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=mZunDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=mZunDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Gabriel Garc\u00eda M\u00e1rquez's One Hundred Years of Solitude",
+    "subtitle": "A Casebook",
+    "authors": [
+      "Gene H. Bell-Villada"
+    ],
+    "publishedDate": "2002",
+    "isbn_10": "0195144554",
+    "isbn_13": "9780195144550",
+    "pageCount": 188,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=-uL2s0htCtkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=-uL2s0htCtkC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      25
+    ]
+  },
+  {
+    "title": "Crime and Punishment",
+    "subtitle": "N/A",
+    "authors": [
+      "Fyodor Dostoyevsky"
+    ],
+    "publishedDate": "2017",
+    "isbn_10": "0198709706",
+    "isbn_13": "9780198709701",
+    "pageCount": 545,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=hlExDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=hlExDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Anna Karenina",
+    "subtitle": "N/A",
+    "authors": [
+      "Leo Tolstoy"
+    ],
+    "publishedDate": "2021-07-07",
+    "isbn_10": "872660776X",
+    "isbn_13": "9788726607765",
+    "pageCount": 1267,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=cqk0EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=cqk0EAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Les Misrables",
+    "subtitle": "N/A",
+    "authors": [
+      "Victor Hugo"
+    ],
+    "publishedDate": "2016-03-02",
+    "isbn_10": "1530326427",
+    "isbn_13": "9781530326426",
+    "pageCount": 492,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "N/A",
+    "smallThumbnail": "N/A",
+    "language": "English",
+    "genre_id": []
+  },
+  {
+    "title": "Don Quixote",
+    "subtitle": "N/A",
+    "authors": [
+      "Miguel de Cervantes Saavedra"
+    ],
+    "publishedDate": "1998",
+    "isbn_10": "0192834835",
+    "isbn_13": "9780192834836",
+    "pageCount": 1012,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=IZmVXKHD69MC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=IZmVXKHD69MC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Moby Dick",
+    "subtitle": "N/A",
+    "authors": [
+      "Herman Melville"
+    ],
+    "publishedDate": "2018-09-04",
+    "isbn_10": "1681779137",
+    "isbn_13": "9781681779133",
+    "pageCount": 812,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=bbdTDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=bbdTDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Odyssey",
+    "subtitle": "(Penguin Classics Deluxe Edition)",
+    "authors": [
+      "Homer"
+    ],
+    "publishedDate": "1997-11-01",
+    "isbn_10": "0140268863",
+    "isbn_13": "9780140268867",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=An2MEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=An2MEAAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      26
+    ]
+  },
+  {
+    "title": "The Iliad",
+    "subtitle": "N/A",
+    "authors": [
+      "Homer"
+    ],
+    "publishedDate": "2007",
+    "isbn_10": "0472116177",
+    "isbn_13": "9780472116171",
+    "pageCount": 480,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=sos0paw_-cEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=sos0paw_-cEC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      27
+    ]
+  },
+  {
+    "title": "The Divine Comedy",
+    "subtitle": "N/A",
+    "authors": [
+      "Dante Alighieri"
+    ],
+    "publishedDate": "1998",
+    "isbn_10": "0192835025",
+    "isbn_13": "9780192835024",
+    "pageCount": 756,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=wmacUwleJv8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=wmacUwleJv8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Metamorphosis",
+    "subtitle": "A New Translation",
+    "authors": [
+      "Franz Kafka"
+    ],
+    "publishedDate": "2025-04-25",
+    "isbn_10": "0393347656",
+    "isbn_13": "9780393347654",
+    "pageCount": 55,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=ZRYfAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=ZRYfAgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Lolita",
+    "subtitle": "N/A",
+    "authors": [
+      "Vladimir Nabokov"
+    ],
+    "publishedDate": "2021-04",
+    "isbn_10": "8198427287",
+    "isbn_13": "9788198427281",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=ej0n0QEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=ej0n0QEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Beloved",
+    "subtitle": "N/A",
+    "authors": [
+      "Toni Morrison"
+    ],
+    "publishedDate": "2004-06-01",
+    "isbn_10": "0756940559",
+    "isbn_13": "9780756940553",
+    "pageCount": 321,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=ymeCQQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=ymeCQQAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Handmaid's Tale",
+    "subtitle": "N/A",
+    "authors": [
+      "Margaret Atwood"
+    ],
+    "publishedDate": "2017",
+    "isbn_10": "1784708232",
+    "isbn_13": "9781784708238",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=ECuBswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=ECuBswEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Piranesi",
+    "subtitle": "WINNER OF THE WOMEN'S PRIZE 2021",
+    "authors": [
+      "Susanna Clarke"
+    ],
+    "publishedDate": "2020-09-15",
+    "isbn_10": "1526622440",
+    "isbn_13": "9781526622440",
+    "pageCount": 231,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=pPa0DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=pPa0DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Priory of the Orange Tree",
+    "subtitle": "The multi-million-copy bestselling fantasy series",
+    "authors": [
+      "Samantha Shannon"
+    ],
+    "publishedDate": "2019-02-26",
+    "isbn_10": "1408883457",
+    "isbn_13": "9781408883457",
+    "pageCount": 849,
+    "printType": "BOOK",
+    "maturityRating": "MATURE",
+    "coverImage": "http://books.google.com/books/content?id=QexdDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=QexdDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "A Court of Thorns and Roses",
+    "subtitle": "Enter the EPIC fantasy worlds of Sarah J Maas with the breath-taking first book in the GLOBALLY BESTSELLING ACOTAR series",
+    "authors": [
+      "Sarah J. Maas"
+    ],
+    "publishedDate": "2020-10-01",
+    "isbn_10": "1526634244",
+    "isbn_13": "9781526634245",
+    "pageCount": 451,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=VswAEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=VswAEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Fourth Wing",
+    "subtitle": "N/A",
+    "authors": [
+      "Rebecca Yarros"
+    ],
+    "publishedDate": "2023-05-02",
+    "isbn_10": "1649374089",
+    "isbn_13": "9781649374080",
+    "pageCount": 420,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=E-OLEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=E-OLEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Atlas Six",
+    "subtitle": "N/A",
+    "authors": [
+      "Olivie Blake"
+    ],
+    "publishedDate": "2021-09-28",
+    "isbn_10": "1250854555",
+    "isbn_13": "9781250854551",
+    "pageCount": 453,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=tkZFEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=tkZFEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The Invisible Life of Addie LaRue",
+    "subtitle": "N/A",
+    "authors": [
+      "V.E. Schwab"
+    ],
+    "publishedDate": "2020-10-06",
+    "isbn_10": "1785652516",
+    "isbn_13": "9781785652516",
+    "pageCount": 583,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=eof4DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=eof4DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "The House in the Cerulean Sea",
+    "subtitle": "N/A",
+    "authors": [
+      "TJ Klune"
+    ],
+    "publishedDate": "2021-02-02",
+    "isbn_10": "1250217318",
+    "isbn_13": "9781250217318",
+    "pageCount": 400,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=LyV8zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=LyV8zQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Legends and Lattes",
+    "subtitle": "N/A",
+    "authors": [
+      "Travis Baldree"
+    ],
+    "publishedDate": "2022-11-08",
+    "isbn_10": "1035007312",
+    "isbn_13": "9781035007318",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=orYNzwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=orYNzwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Project Hail Mary",
+    "subtitle": "N/A",
+    "authors": [
+      "Andy Weir"
+    ],
+    "publishedDate": "2021",
+    "isbn_10": "1529100615",
+    "isbn_13": "9781529100617",
+    "pageCount": 0,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=J2m-zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=J2m-zQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      28
+    ]
+  },
+  {
+    "title": "Good Omens",
+    "subtitle": "N/A",
+    "authors": [
+      "Neil Gaiman",
+      "Terry Pratchett"
+    ],
+    "publishedDate": "2011-11-22",
+    "isbn_10": "1448110238",
+    "isbn_13": "9781448110230",
+    "pageCount": 420,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=B7FL6zzN_FsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=B7FL6zzN_FsC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      10
+    ]
+  },
+  {
+    "title": "Six of Crows",
+    "subtitle": "N/A",
+    "authors": [
+      "Leigh Bardugo"
+    ],
+    "publishedDate": "2015-09-29",
+    "isbn_10": "1627795227",
+    "isbn_13": "9781627795227",
+    "pageCount": 479,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=yhIRBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=yhIRBwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      17
+    ]
+  },
+  {
+    "title": "Crooked Kingdom - Chapters 1 - 4",
+    "subtitle": "N/A",
+    "authors": [
+      "Leigh Bardugo"
+    ],
+    "publishedDate": "2016-08-09",
+    "isbn_10": "1250132894",
+    "isbn_13": "9781250132895",
+    "pageCount": 68,
+    "printType": "BOOK",
+    "maturityRating": "NOT_MATURE",
+    "coverImage": "http://books.google.com/books/content?id=FZyDDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "smallThumbnail": "http://books.google.com/books/content?id=FZyDDAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "English",
+    "genre_id": [
+      17
+    ]
   }
 ]
