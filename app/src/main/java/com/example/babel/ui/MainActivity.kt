@@ -30,6 +30,24 @@ class MainActivity : ComponentActivity() {
                     composable("home") {
                         HomeScreen(navController)
                     }
+                    composable("library") {
+                        LibraryScreen(navController)
+                    }
+                    composable("explore") {
+                        ExploreScreen(navController)
+                    }
+                    composable("journal") {
+                        JournalScreen(navController)
+                    }
+                    composable("stats"){
+                        StatsScreen(navController)
+                    }
+                    composable("settings"){
+                        SettingsScreen(navController)
+                    }
+                    composable("profile"){
+                        ProfileScreen(navController)
+                    }
                     composable(
                         "bookDetail/{bookId}",
                         arguments = listOf(navArgument("bookId") { type = NavType.IntType })

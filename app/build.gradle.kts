@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.androidx.glance.appwidget)
     implementation(libs.gson)
     implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

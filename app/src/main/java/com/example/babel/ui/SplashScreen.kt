@@ -1,11 +1,20 @@
 package com.example.babel.ui
 
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -14,31 +23,44 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.airbnb.lottie.compose.*
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.babel.ui.theme.Amethyst
+import com.example.babel.ui.theme.DeepPlum
+import com.example.babel.ui.theme.MidnightBlue
+import com.example.babel.ui.theme.SilverAccent
 import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavController) {
-    val infiniteTransition = rememberInfiniteTransition()
+    // Subtle diagonal gradient animation
+    val infiniteTransition = rememberInfiniteTransition(label = "gradientShift")
     val gradientShift by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 4000, easing = LinearEasing),
+            animation = tween(durationMillis = 5000, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
-        )
+        ),
+        label = "gradientShiftValue"
     )
 
-    // Use palette from theme (ensures consistency)
-    val c1 = MaterialTheme.colorScheme.background // MidnightBlue
-    val c2 = MaterialTheme.colorScheme.secondary  // DeepPlum
-    val c3 = MaterialTheme.colorScheme.primary    // Amethyst
-    val c4 = MaterialTheme.colorScheme.tertiary   // SilverAccent
+    // Fixed colors from your palette — ensures it always looks identical
+    val colors = listOf(
+        MidnightBlue, // bottom-left
+        DeepPlum,     // above that
+        Amethyst,     // near center
+        SilverAccent  // top-right edge
+    )
 
+    // Animate only the gradient's diagonal movement — not its colors
     val animatedBrush = Brush.linearGradient(
-        colors = listOf(c1, c2, c3, c4),
-        start = Offset(0f, gradientShift * 1200f),
-        end = Offset(1200f, 1200f - gradientShift * 1200f)
+        colors = colors,
+        start = Offset(0f + gradientShift * 200f, 1200f + gradientShift * 200f),
+        end = Offset(1200f - gradientShift * 200f, 0f - gradientShift * 200f)
     )
 
     Box(
@@ -47,30 +69,33 @@ fun SplashScreen(navController: NavController) {
             .background(animatedBrush),
         contentAlignment = Alignment.Center
     ) {
-        // Lottie animation (if you have it). If not, remove this block and just use the Text below.
+        // Optional Lottie animation
         val composition by rememberLottieComposition(LottieCompositionSpec.Asset("magic_logo.json"))
-        val progress by animateLottieCompositionAsState(composition, iterations = LottieConstants.IterateForever)
+        val progress by animateLottieCompositionAsState(
+            composition,
+            iterations = LottieConstants.IterateForever
+        )
 
-        if (composition != null) {
+        composition?.let {
             LottieAnimation(
-                composition,
+                it,
                 progress,
                 modifier = Modifier.size(200.dp)
             )
         }
 
-        // App title (placed under the logo)
+        // App title below animation
         Text(
             text = "Babel",
             fontSize = 48.sp,
-            color = MaterialTheme.colorScheme.onBackground, // will be SilverAccent on dark theme
+            color = SilverAccent, // Always readable and brand-consistent
             modifier = Modifier
                 .padding(top = 250.dp)
                 .alpha(0.95f)
         )
     }
 
-    // Navigate to Home after 3 seconds
+    // Navigate to Home after delay
     LaunchedEffect(Unit) {
         delay(3000)
         navController.navigate("home") {

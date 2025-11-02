@@ -6,22 +6,20 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.example.babel.R // Make sure to import your R class
+import com.example.babel.R
 
-// Define the font file as a Font object
 val cormorantGaramond = Font(R.font.cormorantgaramondregular)
 
-// Create the FontFamily using the defined Font object
 val cormorantGaramondFamily = FontFamily(cormorantGaramond)
 
-// Then, use the FontFamily in your Typography
 val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = cormorantGaramondFamily,  // Use the custom font family here
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+
+    headlineSmall = TextStyle(
+        fontFamily = cormorantGaramondFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 28.sp,
+        lineHeight = 36.sp,
+        letterSpacing = 0.sp
     ),
     titleLarge = TextStyle(
         fontFamily = cormorantGaramondFamily,
@@ -29,6 +27,34 @@ val Typography = Typography(
         fontSize = 22.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
+    ),
+    titleMedium = TextStyle(
+        fontFamily = cormorantGaramondFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.sp
+    ),
+    bodyLarge = TextStyle(
+        fontFamily = cormorantGaramondFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
+    ),
+    bodyMedium = TextStyle(
+        fontFamily = cormorantGaramondFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp
+    ),
+    bodySmall = TextStyle(
+        fontFamily = cormorantGaramondFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp
     ),
     labelSmall = TextStyle(
         fontFamily = cormorantGaramondFamily,
