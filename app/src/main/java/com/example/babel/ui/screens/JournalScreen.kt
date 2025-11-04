@@ -1,4 +1,4 @@
-package com.example.babel.ui
+package com.example.babel.ui.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -47,49 +47,57 @@ import com.example.babel.ui.components.BottomBar
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.babel.ui.viewmodel.JournalViewModel
+import java.util.*
 
 data class JournalEntry(
-    val id: Int,
+    val id: String,
     val content: String,
-    val date: String
+    val date: String,
+    val visibility: String = "private"
 )
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun JournalScreen(navController: NavController) {
+fun JournalScreen(navController: NavController, uid: String = "demo_uid") {
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
     val formatter = remember { SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault()) }
 
-    var journalEntries by remember {
-        mutableStateOf(
-            listOf(
-                JournalEntry(1, "“A night in Gondor and I still can't sleep.” – Elara", "10 Oct 2025, 09:23 PM"),
-                JournalEntry(2, "“When the last page turns, a part of me stays behind.” – Rowan", "02 Oct 2025, 07:42 PM"),
-                JournalEntry(3, "“Jane Austen still ruins men for me.” – Mira", "30 Sep 2025, 11:01 AM")
-            )
-        )
-    }
+    val viewModel: JournalViewModel = viewModel()
+    val state by viewModel.uiState.collectAsState()
 
     var showAddDialog by remember { mutableStateOf(false) }
     var editingEntry by remember { mutableStateOf<JournalEntry?>(null) }
 
+    val localFallback = remember {
+        listOf(
+            JournalEntry("1", "“A night in Gondor and I still can't sleep.” – Elara", "10 Oct 2025, 09:23 PM"),
+            JournalEntry("2", "“When the last page turns, a part of me stays behind.” – Rowan", "02 Oct 2025, 07:42 PM"),
+            JournalEntry("3", "“Jane Austen still ruins men for me.” – Mira", "30 Sep 2025, 11:01 AM")
+        )
+    }
+
+    val journals = if (state.journals.isNotEmpty()) state.journals else localFallback
+
     Scaffold(
         containerColor = colorScheme.background,
-        bottomBar = { BottomBar(navController) }
-    ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            AnimatedBackground()
-
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)
+        bottomBar = { BottomBar(navController) },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { showAddDialog = true },
+                containerColor = colorScheme.primary
             ) {
+                Icon(Icons.Filled.Add, contentDescription = "Add note")
+            }
+        }
+    ) { paddingValues ->
+        Box(Modifier.fillMaxSize().padding(paddingValues)) {
+            AnimatedBackground()
+            Column(Modifier.fillMaxSize().padding(16.dp)) {
                 Text(
                     text = "Your Journal",
                     style = typography.headlineSmall,
@@ -103,46 +111,38 @@ fun JournalScreen(navController: NavController) {
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    itemsIndexed(journalEntries) { _, entry ->
+                    itemsIndexed(journals) { _, entry ->
                         JournalCard(
                             entry = entry,
                             onEdit = { editingEntry = entry },
                             onDelete = {
-                                journalEntries = journalEntries.filterNot { it.id == entry.id }
+                                viewModel.deleteJournal(entry.id, uid)
                             }
                         )
-                    }
-
-                    item {
-                        AddNoteCard { showAddDialog = true }
                     }
                 }
             }
 
-            // Add Dialog
             if (showAddDialog) {
                 AddNoteDialog(
                     onDismiss = { showAddDialog = false },
                     onSave = { newText ->
                         val newEntry = JournalEntry(
-                            id = (journalEntries.maxOfOrNull { it.id } ?: 0) + 1,
+                            id = UUID.randomUUID().toString(),
                             content = newText,
                             date = formatter.format(Date())
                         )
-                        journalEntries = listOf(newEntry) + journalEntries
+                        viewModel.addJournal(uid, newEntry.content, "private")
                         showAddDialog = false
                     }
                 )
             }
 
-            // Edit Dialog
             editingEntry?.let { entry ->
                 AddNoteDialog(
                     onDismiss = { editingEntry = null },
                     onSave = { updatedText ->
-                        journalEntries = journalEntries.map {
-                            if (it.id == entry.id) it.copy(content = updatedText) else it
-                        }
+                        viewModel.editJournal(entry.id, updatedText, entry.visibility, uid)
                         editingEntry = null
                     },
                     initialText = entry.content
@@ -172,9 +172,7 @@ fun JournalCard(entry: JournalEntry, onEdit: () -> Unit, onDelete: () -> Unit) {
                 )
             )
             .pointerInput(Unit) {
-                detectTapGestures(
-                    onLongPress = { showMenu = true }
-                )
+                detectTapGestures(onLongPress = { showMenu = true })
             }
             .padding(12.dp)
     ) {

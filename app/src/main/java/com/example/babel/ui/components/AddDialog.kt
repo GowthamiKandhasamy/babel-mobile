@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.window.Dialog
-import com.example.babel.models.Book
+import com.example.babel.data.models.Book
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,7 +26,8 @@ import java.util.*
 @Composable
 fun AddBookDialog(
     books: List<Book>,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    onSave: (bookId: String, shelf: String) -> Unit
 ) {
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
@@ -260,7 +261,10 @@ fun AddBookDialog(
                     TextButton(onClick = onDismiss) {
                         Text("Cancel", color = colorScheme.secondary)
                     }
-                    TextButton(onClick = onDismiss) {
+                    TextButton(onClick = {
+                        selectedBook?.let { onSave(it.id, selectedShelf) }
+                        onDismiss()
+                    }) {
                         Text("Save", color = colorScheme.primary)
                     }
                 }

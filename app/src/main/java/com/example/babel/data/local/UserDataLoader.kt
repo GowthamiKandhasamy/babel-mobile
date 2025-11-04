@@ -1,8 +1,7 @@
-package com.example.babel.data
+package com.example.babel.data.local
 
 import android.content.Context
-import com.example.babel.models.Book
-import com.example.babel.ui.models.User
+import com.example.babel.data.models.User
 
 object UserDataLoader {
 
@@ -14,11 +13,12 @@ object UserDataLoader {
 
         // Split them into random shelves (just for demo)
         return User(
-            id = 1,
+            uid = "345038063",
+            email = "william.paterson@my-own-personal-domain.com",
             name = "Wanderer",
-            currentlyReading = bookIds.take(5),
-            wantToRead = bookIds.drop(5).take(5),
-            finishedReading = bookIds.drop(10).take(5)
+            photoUrl = "https://picsum.photos/200",
+            label = "New Reader",
+            createdAt = 1672531200000
         )
     }
 }

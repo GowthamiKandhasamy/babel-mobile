@@ -1,7 +1,7 @@
-package com.example.babel.data
+package com.example.babel.data.local
 
 import android.content.Context
-import com.example.babel.models.Book
+import com.example.babel.data.models.Book
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader

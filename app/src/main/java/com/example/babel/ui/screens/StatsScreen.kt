@@ -1,4 +1,4 @@
-package com.example.babel.ui
+package com.example.babel.ui.screens
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -16,12 +16,14 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.babel.data.BookLoader
-import com.example.babel.data.UserReadingActivityLoader
+import com.example.babel.data.local.BookLoader
+import com.example.babel.data.local.UserReadingActivityLoader
+import com.example.babel.data.models.Book
 import com.example.babel.ui.components.AnimatedBackground
 import com.example.babel.ui.components.BottomBar
 import kotlinx.coroutines.delay
@@ -30,62 +32,71 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.*
 import kotlin.math.roundToInt
+import androidx.compose.ui.geometry.*
+import androidx.compose.ui.graphics.*
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.babel.ui.viewmodel.StatsViewModel
+
 
 @Composable
-fun StatsScreen(navController: NavController) {
+fun StatsScreen(navController: NavController, uid: String = "demo_uid") {
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
     val context = LocalContext.current
 
-    val allBooks = remember { BookLoader.loadSampleBooks(context) }
-    val userActivity = remember { UserReadingActivityLoader.loadUserActivity(context) }
-    val finishedBooks = userActivity.filter { it.shelf == "Finished Reading" }
+    val localBooks = remember { BookLoader.loadSampleBooks(context) }
+    val localUserActivity = remember { UserReadingActivityLoader.loadUserActivity(context) }
 
+    val finishedBooks = localUserActivity.filter { it.shelf == "Finished Reading" }
     val totalPages = finishedBooks.sumOf { it.progressValue ?: 0 }
     val totalBooks = finishedBooks.size
 
-    // --- Dynamic Reading Goal ---
-    var goalType by remember { mutableStateOf("Pages") } // "Pages" or "Books"
-    var goalValue by remember { mutableStateOf(20000) }
-    val currentProgress = if (goalType == "Pages") totalPages.toFloat() / goalValue else totalBooks.toFloat() / goalValue
+    val viewModel: StatsViewModel = viewModel()
+    val statsState by viewModel.uiState.collectAsState()
+
+    // fallback to local data if stats not loaded
+    val stats = statsState.stats
+
+    // goal logic
+    var goalType by remember { mutableStateOf("Pages") }
+    var goalValue by remember { mutableStateOf(stats?.goalPages ?: 20000) }
+    val currentProgress = if (goalType == "Pages")
+        totalPages.toFloat() / goalValue
+    else totalBooks.toFloat() / (stats?.goalBooks ?: 50)
 
     val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault())
 
-    // --- Monthly Completion Data ---
-    val monthlyData = finishedBooks.mapNotNull { activity ->
+    // --- Monthly Data ---
+    val monthlyData = finishedBooks.mapNotNull {
         try {
-            activity.endDate?.let {
-                val date = LocalDate.parse(it, formatter)
-                val monthKey = date.month.name.take(3)
-                monthKey to 1
+            it.endDate?.let { d ->
+                val date = LocalDate.parse(d, formatter)
+                val key = date.month.name.take(3)
+                key to 1
             }
-        } catch (_: DateTimeParseException) {
-            null
-        }
+        } catch (_: DateTimeParseException) { null }
     }.groupBy({ it.first }, { it.second }).mapValues { it.value.sum() }
 
-    val sortedMonths = listOf("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC")
+    val sortedMonths = listOf("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC")
     val sortedMonthlyData = sortedMonths.associateWith { monthlyData[it] ?: 0 }
 
     Scaffold(
         containerColor = colorScheme.background,
         bottomBar = { BottomBar(navController) }
     ) { paddingValues ->
-        Box(
-            modifier = Modifier.fillMaxSize().padding(paddingValues)
-        ) {
+        Box(Modifier.fillMaxSize().padding(paddingValues)) {
             AnimatedBackground()
+
             Column(
-                modifier = Modifier.verticalScroll(rememberScrollState()).padding(16.dp),
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 StatsHeader()
                 Spacer(Modifier.height(24.dp))
-
                 QuickStatsRow(totalPages = totalPages, finishedCount = totalBooks)
                 Spacer(Modifier.height(32.dp))
-
-                // --- Reading Goals Section ---
                 ReadingGoalsSection(
                     goalType = goalType,
                     goalValue = goalValue,
@@ -93,18 +104,17 @@ fun StatsScreen(navController: NavController) {
                     onGoalChange = { newType, newGoal ->
                         goalType = newType
                         goalValue = newGoal
+                        viewModel.updateGoal(uid,
+                            if (goalType == "Pages") newGoal else null,
+                            if (goalType == "Books") newGoal else null)
                     }
                 )
-
                 Spacer(Modifier.height(40.dp))
-
                 MonthlyBarChart(sortedMonthlyData)
                 Spacer(Modifier.height(40.dp))
-
-                GenrePieChart(finishedBooks.mapNotNull { fb -> allBooks.find { it.id == fb.bookId } })
+                GenrePieChart(finishedBooks.mapNotNull { fb -> localBooks.find { it.id == fb.bookId } })
                 Spacer(Modifier.height(40.dp))
-
-                PublishedYearScatter(finishedBooks.mapNotNull { fb -> allBooks.find { it.id == fb.bookId } })
+                PublishedYearScatter(finishedBooks.mapNotNull { fb -> localBooks.find { it.id == fb.bookId } })
                 Spacer(Modifier.height(80.dp))
             }
         }
@@ -255,14 +265,14 @@ fun GoalProgressChart(progress: Float, goal: Int, goalType: String) {
                 startAngle = -90f,
                 sweepAngle = 360f,
                 useCenter = false,
-                style = androidx.compose.ui.graphics.drawscope.Stroke(width = 18f)
+                style = Stroke(width = 18f)
             )
             drawArc(
                 color = colorScheme.secondary,
                 startAngle = -90f,
                 sweepAngle = sweepAngle,
                 useCenter = false,
-                style = androidx.compose.ui.graphics.drawscope.Stroke(width = 18f)
+                style = Stroke(width = 18f)
             )
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -297,37 +307,35 @@ fun MonthlyBarChart(data: Map<String, Int>) {
 }
 
 @Composable
-fun GenrePieChart(finishedBooks: List<com.example.babel.models.Book>) {
+fun GenrePieChart(finishedBooks: List<Book>) {
     val colorScheme = MaterialTheme.colorScheme
+    // Assuming genre_id is a list of Ints that correspond to genre names/IDs
+    // We'll group by the Int and count occurrences.
     val genreCounts = finishedBooks.flatMap { it.genre_id }.groupingBy { it }.eachCount()
     val total = genreCounts.values.sum().toFloat()
+    val colors = listOf(colorScheme.primary, colorScheme.secondary, colorScheme.tertiary, colorScheme.primaryContainer, colorScheme.secondaryContainer)
 
     Text("Genre Distribution", style = MaterialTheme.typography.titleMedium, color = colorScheme.onBackground)
     Spacer(Modifier.height(12.dp))
 
     Canvas(modifier = Modifier.size(200.dp)) {
-        var startAngle = -90f
+        var startAngle = 0f
         genreCounts.entries.forEachIndexed { index, entry ->
-            val sweep = (entry.value / total) * 360f
+            val sweepAngle = (entry.value / total) * 360f
             drawArc(
-                color = listOf(
-                    colorScheme.primary,
-                    colorScheme.secondary,
-                    colorScheme.tertiary,
-                    colorScheme.primaryContainer,
-                    colorScheme.secondaryContainer
-                )[index % 5],
+                color = colors[index % colors.size], // Cycle through a list of colors
                 startAngle = startAngle,
-                sweepAngle = sweep,
+                sweepAngle = sweepAngle,
                 useCenter = true
             )
-            startAngle += sweep
+            startAngle += sweepAngle
         }
     }
 }
 
+
 @Composable
-fun PublishedYearScatter(finishedBooks: List<com.example.babel.models.Book>) {
+fun PublishedYearScatter(finishedBooks: List<Book>) {
     val colorScheme = MaterialTheme.colorScheme
     val years = finishedBooks.mapNotNull { it.publishedDate?.takeLast(4)?.toIntOrNull() }.sorted()
     if (years.isEmpty()) return

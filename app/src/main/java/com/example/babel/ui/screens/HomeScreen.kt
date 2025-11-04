@@ -1,4 +1,4 @@
-package com.example.babel.ui
+package com.example.babel.ui.screens
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
@@ -14,11 +14,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,32 +29,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.babel.data.BookLoader
+import com.example.babel.data.local.BookLoader
 import com.example.babel.ui.components.AnimatedBackground
 import com.example.babel.ui.components.BookCarousel
 import com.example.babel.ui.components.BottomBar
 import com.example.babel.ui.components.TopBar
+import com.example.babel.ui.viewmodel.HomeViewModel
 import kotlinx.coroutines.delay
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
-    val colorScheme = MaterialTheme.colorScheme
-    val scrollState = rememberScrollState()
+    val viewModel: HomeViewModel = viewModel()
+    val state by viewModel.uiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.loadHomeData(userGenre = 2) // Example genre, can be from stats later
+    }
 
     Scaffold(
-        topBar = {
-            TopBar(
-                navController
-            )
-        },
-        bottomBar = {
-            BottomBar(
-                navController
-            )
-        },
-        containerColor = colorScheme.background,
-        contentColor = colorScheme.onBackground
+        topBar = { TopBar(navController) },
+        bottomBar = { BottomBar(navController) },
+        containerColor = MaterialTheme.colorScheme.background
     ) { paddingValues ->
         Box(
             modifier = Modifier
@@ -61,26 +61,37 @@ fun HomeScreen(navController: NavController) {
         ) {
             AnimatedBackground()
 
-            Column(
-                modifier = Modifier
-                    .verticalScroll(scrollState)
-                    .fillMaxSize()
-                    .padding(16.dp)
-            ) {
-                Spacer(modifier = Modifier.height(20.dp))
-                GreetingSection()
-                Spacer(modifier = Modifier.height(24.dp))
+            if (state.isLoading) {
+                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            } else {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(24.dp)
+                ) {
+                    BookCarousel(
+                        title = "Featured Books",
+                        books = state.featured,
+                        navController = navController
+                    )
 
-                val context = LocalContext.current
-                val sampleBooks by remember { mutableStateOf(BookLoader.loadSampleBooks(context)) }
+                    BookCarousel(
+                        title = "New Releases",
+                        books = state.newReleases,
+                        navController = navController
+                    )
 
-                BookCarousel(
-                    title = "Featured",
-                    books = sampleBooks,
-                    navController = navController
-                )
-
-                Spacer(modifier = Modifier.height(32.dp))
+                    if (state.recommended.isNotEmpty()) {
+                        BookCarousel(
+                            title = "Since You Liked...",
+                            books = state.recommended,
+                            navController = navController
+                        )
+                    }
+                }
             }
         }
     }

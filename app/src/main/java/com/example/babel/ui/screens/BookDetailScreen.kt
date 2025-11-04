@@ -1,4 +1,4 @@
-package com.example.babel.ui
+package com.example.babel.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.babel.data.BookLoader
+import com.example.babel.data.local.BookLoader
 import com.example.babel.ui.components.AddBookDialog
 import com.example.babel.ui.components.BookCarousel
 import com.example.babel.ui.components.TopBar
@@ -37,7 +37,7 @@ import com.example.babel.ui.components.BottomBar
 fun BookDetailScreen(navController: NavController, bookId: Int) {
     val context = LocalContext.current
     val books = remember { BookLoader.loadSampleBooks(context) }
-    val book = books.find { it.id == bookId }
+    val book = books.find { it.id == bookId.toString() }
 
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
@@ -151,11 +151,16 @@ fun BookDetailScreen(navController: NavController, bookId: Int) {
                                 books = books,
                                 onDismiss = {
                                     showAddDialog = false
-                                    selectedShelf =
-                                        "Currently Reading" // Default text after dialog close
+                                    selectedShelf = "Currently Reading"
+                                },
+                                onSave = { bookId, shelf ->
+                                    // TODO: integrate with LibraryViewModel
+                                    // For now, you can just log or show a toast until backend connected
+                                    showAddDialog = false
                                 }
                             )
                         }
+
 
                         Spacer(Modifier.height(16.dp))
 

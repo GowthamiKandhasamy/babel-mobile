@@ -1,8 +1,8 @@
-package com.example.babel.models
+package com.example.babel.data.models
 
 data class Book(
-    val id: Int,
-    val title: String,
+    val id: String = "",
+    val title: String = "",
     val subtitle: String? = null,
     val authors: List<String> = emptyList(),
     val publishedDate: String? = null,
@@ -16,3 +16,4 @@ data class Book(
     val language: String? = null,
     val genre_id: List<Int> = emptyList()
 )
+

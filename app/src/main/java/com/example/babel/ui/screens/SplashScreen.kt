@@ -1,4 +1,4 @@
-package com.example.babel.ui
+package com.example.babel.ui.screens
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -99,7 +99,7 @@ fun SplashScreen(navController: NavController) {
     // Navigate to Home after delay
     LaunchedEffect(Unit) {
         delay(3000)
-        navController.navigate("home") {
+        navController.navigate("auth") {
             popUpTo("splash") { inclusive = true }
         }
     }

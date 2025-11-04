@@ -13,12 +13,24 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.babel.ui.screens.AuthScreen
+import com.example.babel.ui.screens.BookDetailScreen
+import com.example.babel.ui.screens.ExploreScreen
+import com.example.babel.ui.screens.HomeScreen
+import com.example.babel.ui.screens.JournalScreen
+import com.example.babel.ui.screens.LibraryScreen
+import com.example.babel.ui.screens.ProfileScreen
+import com.example.babel.ui.screens.SettingsScreen
+import com.example.babel.ui.screens.SplashScreen
+import com.example.babel.ui.screens.StatsScreen
 import com.example.babel.ui.theme.BabelTheme
+import com.google.firebase.FirebaseApp
 
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         enableEdgeToEdge()
         setContent {
             BabelTheme {
@@ -26,6 +38,9 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = "splash") {
                     composable("splash") {
                         SplashScreen(navController)
+                    }
+                    composable("auth"){
+                        AuthScreen(navController)
                     }
                     composable("home") {
                         HomeScreen(navController)

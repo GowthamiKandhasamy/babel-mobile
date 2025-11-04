@@ -1,4 +1,4 @@
-package com.example.babel.data
+package com.example.babel.data.local
 
 import android.content.Context
 import com.example.babel.models.UserReadingActivity
@@ -19,7 +19,7 @@ object UserReadingActivityLoader {
 
     private fun sampleUserActivity(): List<UserReadingActivity> = listOf(
         UserReadingActivity(
-            bookId = 1,
+            bookId = "19843975947",
             shelf = "Finished Reading",
             startDate = "01 Jan 2025",
             endDate = "07 Jan 2025",
@@ -29,7 +29,7 @@ object UserReadingActivityLoader {
             progressValue = 350
         ),
         UserReadingActivity(
-            bookId = 2,
+            bookId = "2485937946739",
             shelf = "Finished Reading",
             startDate = "15 Jan 2025",
             endDate = "28 Jan 2025",
@@ -39,7 +39,7 @@ object UserReadingActivityLoader {
             progressValue = 420
         ),
         UserReadingActivity(
-            bookId = 3,
+            bookId = "345793475934796",
             shelf = "Currently Reading",
             startDate = "10 Feb 2025",
             progressType = "Percent",

@@ -1,7 +1,7 @@
 package com.example.babel.models
 
 data class UserReadingActivity(
-    val bookId: Int,
+    val bookId: String = "",
     val shelf: String, // "Currently Reading", "Finished Reading", "Want to Read"
     val startDate: String? = null,
     val endDate: String? = null,

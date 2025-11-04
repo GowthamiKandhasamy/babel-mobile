@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.babel.models.Book
+import com.example.babel.data.models.Book
 
 /**
  * A generic reusable carousel for displaying a horizontal row of books.

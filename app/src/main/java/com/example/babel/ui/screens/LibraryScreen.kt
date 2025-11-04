@@ -1,4 +1,4 @@
-package com.example.babel.ui
+package com.example.babel.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,43 +13,52 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.babel.data.BookLoader
-import com.example.babel.data.UserDataLoader
-import com.example.babel.models.Book
+import com.example.babel.data.models.Book
 import com.example.babel.ui.components.AddBookDialog
 import com.example.babel.ui.components.AnimatedBackground
 import com.example.babel.ui.components.BookCarousel
 import com.example.babel.ui.components.BottomBar
+import com.example.babel.ui.viewmodel.LibraryViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun LibraryScreen(navController: NavController) {
+fun LibraryScreen(navController: NavController, viewModel: LibraryViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
+    val uiState by viewModel.uiState.collectAsState()
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
-    val context = LocalContext.current
-    val user = remember { UserDataLoader.loadSampleUser(context) }
-    val books = remember { BookLoader.loadSampleBooks(context) }
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
+    val currentUser = FirebaseAuth.getInstance().currentUser
+    val uid = currentUser?.uid ?: return
+
     var showAddDialog by remember { mutableStateOf(false) }
+
+    LaunchedEffect(uid) {
+        viewModel.loadLibrary(uid)
+    }
 
     Scaffold(
         containerColor = colorScheme.background,
-        contentColor = colorScheme.onBackground,
         bottomBar = { BottomBar(navController) },
         floatingActionButton = {
             FloatingActionButton(
@@ -68,60 +77,76 @@ fun LibraryScreen(navController: NavController) {
         ) {
             AnimatedBackground()
 
-            Column(
-                modifier = Modifier
-                    .verticalScroll(scrollState)
-                    .padding(16.dp)
-            ) {
-                Text(
-                    text = "Your Library",
-                    style = typography.headlineSmall,
-                    color = colorScheme.onBackground,
-                    modifier = Modifier.padding(bottom = 16.dp)
-                )
+            if (uiState.isLoading) {
+                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(color = colorScheme.primary)
+                }
+            } else if (uiState.error != null) {
+                Text("Error: ${uiState.error}", color = colorScheme.error)
+            } else {
+                val library = uiState.library
+                val allBooks = uiState.allBooks
 
-                LibraryShelf(
-                    title = "Currently Reading",
-                    bookIds = user.currentlyReading,
-                    allBooks = books,
-                    navController = navController
-                )
+                Column(
+                    modifier = Modifier
+                        .verticalScroll(scrollState)
+                        .padding(16.dp)
+                ) {
+                    Text(
+                        text = "Your Library",
+                        style = typography.headlineSmall,
+                        color = colorScheme.onBackground,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
 
-                Spacer(modifier = Modifier.height(10.dp))
+                    LibraryShelf(
+                        title = "Currently Reading",
+                        bookIds = library?.currentlyReading ?: emptyList(),
+                        allBooks = allBooks,
+                        navController = navController
+                    )
 
-                LibraryShelf(
-                    title = "Want to Read",
-                    bookIds = user.wantToRead,
-                    allBooks = books,
-                    navController = navController
-                )
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                Spacer(modifier = Modifier.height(10.dp))
+                    LibraryShelf(
+                        title = "Want to Read",
+                        bookIds = library?.wantToRead ?: emptyList(),
+                        allBooks = allBooks,
+                        navController = navController
+                    )
 
-                LibraryShelf(
-                    title = "Finished Reading",
-                    bookIds = user.finishedReading,
-                    allBooks = books,
-                    navController = navController
-                )
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                Spacer(modifier = Modifier.height(80.dp))
+                    LibraryShelf(
+                        title = "Finished Reading",
+                        bookIds = library?.finishedReading ?: emptyList(),
+                        allBooks = allBooks,
+                        navController = navController
+                    )
+
+                    Spacer(modifier = Modifier.height(80.dp))
+                }
             }
 
             if (showAddDialog) {
                 AddBookDialog(
-                    books = books,
-                    onDismiss = { showAddDialog = false }
+                    books = uiState.allBooks,
+                    onDismiss = { showAddDialog = false },
+                    onSave = { bookId, shelf ->
+                        viewModel.addBook(uid, bookId, shelf)
+                        showAddDialog = false
+                    }
                 )
             }
         }
     }
 }
 
+
 @Composable
 fun LibraryShelf(
     title: String,
-    bookIds: List<Int>,
+    bookIds: List<String>,
     allBooks: List<Book>,
     navController: NavController
 ) {

@@ -1,4 +1,4 @@
-package com.example.babel.ui.models
+package com.example.babel.data.models
 
 data class Genre(
     val id: Int,

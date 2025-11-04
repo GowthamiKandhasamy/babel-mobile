@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "888139835885",
+    "project_id": "babel-64fa3",
+    "storage_bucket": "babel-64fa3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888139835885:android:ab8e75e48914d7c6ea1fe4",
+        "android_client_info": {
+          "package_name": "com.example.babel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwdQ4qOiER8q5GYvtaI2zeWkO6ocUPIfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

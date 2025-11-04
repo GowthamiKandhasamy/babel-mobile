@@ -1,4 +1,4 @@
-package com.example.babel.ui
+package com.example.babel.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,7 +16,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.babel.ui.components.AnimatedBackground
@@ -122,7 +122,7 @@ fun SettingsCategoryTitle(title: String) {
 @Composable
 fun SettingToggleItem(
     title: String,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: ImageVector,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit
 ) {
@@ -168,7 +168,7 @@ fun SettingToggleItem(
 @Composable
 fun SettingDropdownItem(
     title: String,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: ImageVector,
     options: List<String>,
     selectedOption: String,
     onOptionSelected: (String) -> Unit
@@ -224,7 +224,7 @@ fun SettingDropdownItem(
 @Composable
 fun SettingClickableItem(
     title: String,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: ImageVector,
     onClick: () -> Unit
 ) {
     val colorScheme = MaterialTheme.colorScheme
