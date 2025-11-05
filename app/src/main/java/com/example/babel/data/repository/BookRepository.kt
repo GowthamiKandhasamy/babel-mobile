@@ -3,6 +3,7 @@ package com.example.babel.data.repository
 import com.example.babel.data.models.Book
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import kotlin.text.get
 
 class BookRepository(
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -26,26 +27,27 @@ class BookRepository(
             .await()
         return snapshot.documents.mapNotNull { it.toObject(Book::class.java) }
     }
-}
 
-suspend fun getNewReleases(): List<Book> {
-    val snapshot = db.collection("books")
-        .whereGreaterThanOrEqualTo("publishedDate", "2022")
-        .get().await()
-    return snapshot.documents.mapNotNull { it.toObject(Book::class.java) }
-}
+    suspend fun getNewReleases(): List<Book> {
+        val snapshot = db.collection("books")
+            .whereGreaterThanOrEqualTo("publishedDate", "2022")
+            .get().await()
+        return snapshot.documents.mapNotNull { it.toObject(Book::class.java) }
+    }
 
-suspend fun getFeaturedBooks(): List<Book> {
-    val snapshot = db.collection("books")
-        .whereEqualTo("featured", true)
-        .get().await()
-    return snapshot.documents.mapNotNull { it.toObject(Book::class.java) }
-}
+    suspend fun getFeaturedBooks(): List<Book> {
+        val snapshot = db.collection("books")
+            .whereEqualTo("featured", true)
+            .get().await()
+        return snapshot.documents.mapNotNull { it.toObject(Book::class.java) }
+    }
 
-suspend fun getBooksByUserGenre(genreId: Int): List<Book> {
-    val snapshot = db.collection("books")
-        .whereArrayContains("genre_id", genreId)
-        .get().await()
-    return snapshot.documents.mapNotNull { it.toObject(Book::class.java) }
+    suspend fun getBooksByUserGenre(genreId: Int): List<Book> {
+        val snapshot = db.collection("books")
+            .whereArrayContains("genre_id", genreId)
+            .get().await()
+        return snapshot.documents.mapNotNull { it.toObject(Book::class.java) }
+    }
+
 }
 

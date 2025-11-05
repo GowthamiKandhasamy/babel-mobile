@@ -1,5 +1,6 @@
 package com.example.babel.ui.components
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,9 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
+import com.example.babel.data.models.Journal
 
 @Composable
-fun JournalSection() {
+fun JournalSection(
+    journals: List<Journal>,
+    context: Context
+) {
     val colorScheme = MaterialTheme.colorScheme
     val musings = listOf(
         "“A night in Gondor and I still can't sleep.” – Elara",

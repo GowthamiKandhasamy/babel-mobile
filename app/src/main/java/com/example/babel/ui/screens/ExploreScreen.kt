@@ -1,19 +1,22 @@
 package com.example.babel.ui.screens
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.babel.data.local.BookLoader
 import com.example.babel.ui.components.*
+import com.example.babel.ui.viewmodel.ExploreViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,9 +69,16 @@ fun ExploreScreen(navController: NavController) {
                         navController = navController
                     )
 
-                    JournalSection(journals = state.publicJournals)
+                    JournalSection(
+                        journals = state.publicJournals,
+                        context = LocalContext.current
+                    )
 
-                    CategoryGrid(navController = navController)
+
+                    CategoryGrid(
+                        navController = navController,
+                        context = LocalContext.current
+                    )
                 }
             }
         }

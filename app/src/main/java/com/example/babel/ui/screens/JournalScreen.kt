@@ -2,67 +2,46 @@ package com.example.babel.ui.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.babel.ui.components.AnimatedBackground
 import com.example.babel.ui.components.BottomBar
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.babel.ui.viewmodel.JournalViewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Local JournalEntry model (used only for display/offline)
+ */
 data class JournalEntry(
-    val id: String,
-    val content: String,
-    val date: String,
+    val id: String = UUID.randomUUID().toString(),
+    val content: String = "",
+    val date: String = "",
     val visibility: String = "private"
 )
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun JournalScreen(navController: NavController, uid: String = "demo_uid") {
+fun JournalScreen(
+    navController: NavController,
+    uid: String = "demo_uid"
+) {
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
     val formatter = remember { SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault()) }
@@ -73,6 +52,7 @@ fun JournalScreen(navController: NavController, uid: String = "demo_uid") {
     var showAddDialog by remember { mutableStateOf(false) }
     var editingEntry by remember { mutableStateOf<JournalEntry?>(null) }
 
+    // Local fallback data for preview/testing
     val localFallback = remember {
         listOf(
             JournalEntry("1", "“A night in Gondor and I still can't sleep.” – Elara", "10 Oct 2025, 09:23 PM"),
@@ -81,7 +61,18 @@ fun JournalScreen(navController: NavController, uid: String = "demo_uid") {
         )
     }
 
-    val journals = if (state.journals.isNotEmpty()) state.journals else localFallback
+    // Combine local + backend data (if available)
+    val journals: List<JournalEntry> =
+        if (state.journals.isNotEmpty())
+            state.journals.map {
+                JournalEntry(
+                    id = it.id,
+                    content = it.content,
+                    date = formatter.format(Date(it.createdAt)),
+                    visibility = it.visibility
+                )
+            }
+        else localFallback
 
     Scaffold(
         containerColor = colorScheme.background,
@@ -95,9 +86,18 @@ fun JournalScreen(navController: NavController, uid: String = "demo_uid") {
             }
         }
     ) { paddingValues ->
-        Box(Modifier.fillMaxSize().padding(paddingValues)) {
+        Box(
+            Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
             AnimatedBackground()
-            Column(Modifier.fillMaxSize().padding(16.dp)) {
+
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
                 Text(
                     text = "Your Journal",
                     style = typography.headlineSmall,
@@ -111,7 +111,7 @@ fun JournalScreen(navController: NavController, uid: String = "demo_uid") {
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    itemsIndexed(journals) { _, entry ->
+                    items(journals, key = { it.id }) { entry ->
                         JournalCard(
                             entry = entry,
                             onEdit = { editingEntry = entry },
@@ -123,6 +123,7 @@ fun JournalScreen(navController: NavController, uid: String = "demo_uid") {
                 }
             }
 
+            // --- Add Dialog ---
             if (showAddDialog) {
                 AddNoteDialog(
                     onDismiss = { showAddDialog = false },
@@ -138,6 +139,7 @@ fun JournalScreen(navController: NavController, uid: String = "demo_uid") {
                 )
             }
 
+            // --- Edit Dialog ---
             editingEntry?.let { entry ->
                 AddNoteDialog(
                     onDismiss = { editingEntry = null },
@@ -171,9 +173,7 @@ fun JournalCard(entry: JournalEntry, onEdit: () -> Unit, onDelete: () -> Unit) {
                     )
                 )
             )
-            .pointerInput(Unit) {
-                detectTapGestures(onLongPress = { showMenu = true })
-            }
+            .pointerInput(Unit) { detectTapGestures(onLongPress = { showMenu = true }) }
             .padding(12.dp)
     ) {
         Column(verticalArrangement = Arrangement.SpaceBetween) {
@@ -209,30 +209,6 @@ fun JournalCard(entry: JournalEntry, onEdit: () -> Unit, onDelete: () -> Unit) {
                 }
             )
         }
-    }
-}
-
-@Composable
-fun AddNoteCard(onClick: () -> Unit) {
-    val colorScheme = MaterialTheme.colorScheme
-    val gradient = Brush.linearGradient(
-        listOf(colorScheme.primary.copy(alpha = 0.15f), colorScheme.secondary.copy(alpha = 0.15f))
-    )
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(120.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(gradient)
-            .clickable { onClick() },
-        contentAlignment = Alignment.Center
-    ) {
-        Icon(
-            imageVector = Icons.Default.Add,
-            contentDescription = "Add note",
-            tint = colorScheme.primary,
-            modifier = Modifier.size(40.dp)
-        )
     }
 }
 

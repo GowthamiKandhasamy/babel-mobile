@@ -1,7 +1,7 @@
 package com.example.babel.data.local
 
 import android.content.Context
-import com.example.babel.models.UserReadingActivity
+import com.example.babel.data.models.UserReadingActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

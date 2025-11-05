@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.runtime)
+    implementation("androidx.compose.material:material-icons-extended:1.6.8")
+
 
     // --- Firebase ---
     implementation(platform(libs.firebase.bom))

@@ -11,14 +11,28 @@ class ExploreRepository(
     suspend fun getPopularByCity(city: String): List<Book> {
         val cityDoc = db.collection("popular_by_city").document(city).get().await()
         val bookIds = cityDoc.get("bookIds") as? List<String> ?: emptyList()
-        val snapshot = db.collection("books").whereIn("id", bookIds).get().await()
+
+        if (bookIds.isEmpty()) return emptyList() // ✅ prevent crash
+
+        val snapshot = db.collection("books")
+            .whereIn("id", bookIds)
+            .get()
+            .await()
+
         return snapshot.documents.mapNotNull { it.toObject(Book::class.java) }
     }
 
     suspend fun getWeatherBooks(condition: String): List<Book> {
         val weatherDoc = db.collection("weather_books").document(condition).get().await()
         val ids = weatherDoc.get("bookIds") as? List<String> ?: emptyList()
-        val snapshot = db.collection("books").whereIn("id", ids).get().await()
+
+        if (ids.isEmpty()) return emptyList() // ✅ prevent crash
+
+        val snapshot = db.collection("books")
+            .whereIn("id", ids)
+            .get()
+            .await()
+
         return snapshot.documents.mapNotNull { it.toObject(Book::class.java) }
     }
 
@@ -32,7 +46,9 @@ class ExploreRepository(
             .whereEqualTo("visibility", "public")
             .orderBy("likes")
             .limit(10)
-            .get().await()
+            .get()
+            .await()
+
         return snapshot.documents.mapNotNull { it.toObject(Journal::class.java) }
     }
 }

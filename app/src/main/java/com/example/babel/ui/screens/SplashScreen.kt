@@ -28,15 +28,20 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.babel.data.repository.AuthRepository
 import com.example.babel.ui.theme.Amethyst
 import com.example.babel.ui.theme.DeepPlum
 import com.example.babel.ui.theme.MidnightBlue
 import com.example.babel.ui.theme.SilverAccent
 import com.example.babel.ui.theme.PaleWhite
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavController) {
+fun SplashScreen(navController: NavController, authRepository: AuthRepository = AuthRepository(Firebase.auth)) {
+    val currentUser = authRepository.currentUser()
+
     // Subtle diagonal gradient animation
     val infiniteTransition = rememberInfiniteTransition(label = "gradientShift")
     val gradientShift by infiniteTransition.animateFloat(
@@ -99,8 +104,14 @@ fun SplashScreen(navController: NavController) {
     // Navigate to Home after delay
     LaunchedEffect(Unit) {
         delay(3000)
-        navController.navigate("auth") {
-            popUpTo("splash") { inclusive = true }
+        if (currentUser != null) {
+            navController.navigate("home") {
+                popUpTo("splash") { inclusive = true }
+            }
+        } else {
+            navController.navigate("auth") {
+                popUpTo("splash") { inclusive = true }
+            }
         }
     }
 }

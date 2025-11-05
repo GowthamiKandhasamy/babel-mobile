@@ -35,7 +35,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             BabelTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "splash") {
+                NavHost(navController = navController, startDestination = "splash")
+                {
                     composable("splash") {
                         SplashScreen(navController)
                     }
