@@ -37,7 +37,7 @@ import com.example.babel.ui.components.BottomBar
 fun BookDetailScreen(navController: NavController, bookId: Int) {
     val context = LocalContext.current
     val books = remember { BookLoader.loadSampleBooks(context) }
-    val book = books.find { it.id == bookId.toString() }
+    val book = books.find { it.id == bookId.toLong() }
 
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography

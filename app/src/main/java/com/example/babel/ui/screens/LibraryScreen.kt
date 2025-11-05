@@ -146,7 +146,7 @@ fun LibraryScreen(navController: NavController, viewModel: LibraryViewModel = an
 @Composable
 fun LibraryShelf(
     title: String,
-    bookIds: List<String>,
+    bookIds: List<Long>,
     allBooks: List<Book>,
     navController: NavController
 ) {

@@ -1,5 +1,6 @@
 package com.example.babel.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.babel.data.models.Book
@@ -26,9 +27,14 @@ class HomeViewModel(
     fun loadHomeData(userGenre: Int?) {
         viewModelScope.launch {
             try {
+                Log.d("HomeVM", "Fetching home data...")
+
                 val featured = repo.getFeaturedBooks()
                 val newReleases = repo.getNewReleases()
                 val recommended = userGenre?.let { repo.getBooksByUserGenre(it) } ?: emptyList()
+
+                Log.d("HomeVM", "Fetched ${featured.size} featured, ${newReleases.size} new releases")
+
                 _uiState.value = HomeUiState(
                     featured = featured,
                     newReleases = newReleases,
@@ -36,9 +42,9 @@ class HomeViewModel(
                     isLoading = false
                 )
             } catch (e: Exception) {
+                Log.e("HomeVM", "Error loading home: ${e.message}")
                 _uiState.value = HomeUiState(error = e.message, isLoading = false)
             }
         }
     }
 }
-

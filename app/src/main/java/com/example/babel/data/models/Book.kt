@@ -1,10 +1,11 @@
 package com.example.babel.data.models
 
 data class Book(
-    val id: String = "",
+    val id: Long = 0,
     val title: String = "",
     val subtitle: String? = null,
     val authors: List<String> = emptyList(),
+    val averageRating: Double? = 0.0,
     val publishedDate: String? = null,
     val isbn10: String? = null,
     val isbn13: String? = null,

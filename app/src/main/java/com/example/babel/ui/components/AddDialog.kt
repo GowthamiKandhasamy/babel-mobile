@@ -27,7 +27,7 @@ import java.util.*
 fun AddBookDialog(
     books: List<Book>,
     onDismiss: () -> Unit,
-    onSave: (bookId: String, shelf: String) -> Unit
+    onSave: (bookId: Long, shelf: String) -> Unit
 ) {
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography

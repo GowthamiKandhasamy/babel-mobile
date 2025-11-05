@@ -42,7 +42,7 @@ class LibraryViewModel(
         }
     }
 
-    fun addBook(uid: String, bookId: String, shelf: String) {
+    fun addBook(uid: String, bookId: Long, shelf: String) {
         viewModelScope.launch {
             libraryRepo.addBookToShelf(uid, bookId, shelf)
             loadLibrary(uid)

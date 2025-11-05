@@ -1,5 +1,6 @@
 package com.example.babel.ui.screens
 
+import android.util.Log
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -39,6 +40,7 @@ import com.example.babel.ui.components.BookCarousel
 import com.example.babel.ui.components.BottomBar
 import com.example.babel.ui.components.TopBar
 import com.example.babel.ui.viewmodel.HomeViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,7 +50,7 @@ fun HomeScreen(navController: NavController) {
     val state by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.loadHomeData(userGenre = 2) // Example genre, can be from stats later
+        viewModel.loadHomeData(userGenre = 10) // example genre
     }
 
     Scaffold(
@@ -63,35 +65,51 @@ fun HomeScreen(navController: NavController) {
         ) {
             AnimatedBackground()
 
-            if (state.isLoading) {
-                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator()
+            when {
+                state.isLoading -> {
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
                 }
-            } else {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(24.dp)
-                ) {
-                    BookCarousel(
-                        title = "Featured Books",
-                        books = state.featured,
-                        navController = navController
-                    )
-
-                    BookCarousel(
-                        title = "New Releases",
-                        books = state.newReleases,
-                        navController = navController
-                    )
-
-                    if (state.recommended.isNotEmpty()) {
-                        BookCarousel(
-                            title = "Since You Liked...",
-                            books = state.recommended,
-                            navController = navController
-                        )
+                state.error != null -> {
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text("Error: ${state.error}", color = MaterialTheme.colorScheme.error)
+                    }
+                }
+                state.featured.isEmpty() && state.newReleases.isEmpty() -> {
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text("No books found. Check Firestore fields.", color = MaterialTheme.colorScheme.onBackground)
+                    }
+                }
+                else -> {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp)
+                            .verticalScroll(rememberScrollState()),
+                        verticalArrangement = Arrangement.spacedBy(24.dp)
+                    ) {
+                        if (state.featured.isNotEmpty()) {
+                            BookCarousel(
+                                title = "Featured Books",
+                                books = state.featured,
+                                navController = navController
+                            )
+                        }
+                        if (state.newReleases.isNotEmpty()) {
+                            BookCarousel(
+                                title = "New Releases",
+                                books = state.newReleases,
+                                navController = navController
+                            )
+                        }
+                        if (state.recommended.isNotEmpty()) {
+                            BookCarousel(
+                                title = "Since You Liked...",
+                                books = state.recommended,
+                                navController = navController
+                            )
+                        }
                     }
                 }
             }

@@ -16,7 +16,7 @@ class LibraryRepository(
         else UserLibrary(uid)
     }
 
-    suspend fun addBookToShelf(uid: String, bookId: String, shelf: String) {
+    suspend fun addBookToShelf(uid: String, bookId: Long, shelf: String) {
         val ref = libraries.document(uid)
         val updateField = when (shelf) {
             "Currently Reading" -> "currentlyReading"
@@ -27,7 +27,7 @@ class LibraryRepository(
         ref.update(updateField, FieldValue.arrayUnion(bookId)).await()
     }
 
-    suspend fun removeBookFromShelf(uid: String, bookId: String, shelf: String) {
+    suspend fun removeBookFromShelf(uid: String, bookId: Long, shelf: String) {
         val ref = libraries.document(uid)
         val updateField = when (shelf) {
             "Currently Reading" -> "currentlyReading"

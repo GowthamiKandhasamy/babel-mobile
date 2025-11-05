@@ -19,7 +19,7 @@ object UserReadingActivityLoader {
 
     private fun sampleUserActivity(): List<UserReadingActivity> = listOf(
         UserReadingActivity(
-            bookId = "19843975947",
+            bookId = 19843975947,
             shelf = "Finished Reading",
             startDate = "01 Jan 2025",
             endDate = "07 Jan 2025",
@@ -29,7 +29,7 @@ object UserReadingActivityLoader {
             progressValue = 350
         ),
         UserReadingActivity(
-            bookId = "2485937946739",
+            bookId = 2485937946739,
             shelf = "Finished Reading",
             startDate = "15 Jan 2025",
             endDate = "28 Jan 2025",
@@ -39,7 +39,7 @@ object UserReadingActivityLoader {
             progressValue = 420
         ),
         UserReadingActivity(
-            bookId = "345793475934796",
+            bookId = 345793475934796,
             shelf = "Currently Reading",
             startDate = "10 Feb 2025",
             progressType = "Percent",
