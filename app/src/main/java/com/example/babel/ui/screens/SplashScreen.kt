@@ -15,6 +15,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -37,36 +41,39 @@ import com.example.babel.ui.theme.PaleWhite
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
 
 @Composable
-fun SplashScreen(navController: NavController, authRepository: AuthRepository = AuthRepository(Firebase.auth)) {
-    val currentUser = authRepository.currentUser()
+fun SplashScreen(
+    navController: NavController,
+    authRepository: AuthRepository = AuthRepository(Firebase.auth)
+) {
+    val currentUser = remember { authRepository.currentUser() }
 
-    // Subtle diagonal gradient animation
     val infiniteTransition = rememberInfiniteTransition(label = "gradientShift")
     val gradientShift by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 5000, easing = LinearEasing),
+            animation = tween(5000, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         ),
         label = "gradientShiftValue"
     )
 
-    // Fixed colors from your palette — ensures it always looks identical
-    val colors = listOf(
-        MidnightBlue, // bottom-left
-        DeepPlum,     // above that
-        Amethyst,     // near center
-        SilverAccent  // top-right edge
-    )
+    val colors = listOf(MidnightBlue, DeepPlum, Amethyst, SilverAccent)
 
-    // Animate only the gradient's diagonal movement — not its colors
     val animatedBrush = Brush.linearGradient(
         colors = colors,
         start = Offset(0f + gradientShift * 200f, 1200f + gradientShift * 200f),
         end = Offset(1200f - gradientShift * 200f, 0f - gradientShift * 200f)
+    )
+
+    val composition by rememberLottieComposition(LottieCompositionSpec.Asset("magic_logo.json"))
+    val progress by animateLottieCompositionAsState(
+        composition,
+        iterations = LottieConstants.IterateForever
     )
 
     Box(
@@ -75,37 +82,24 @@ fun SplashScreen(navController: NavController, authRepository: AuthRepository = 
             .background(animatedBrush),
         contentAlignment = Alignment.Center
     ) {
-        // Optional Lottie animation
-        val composition by rememberLottieComposition(LottieCompositionSpec.Asset("magic_logo.json"))
-        val progress by animateLottieCompositionAsState(
-            composition,
-            iterations = LottieConstants.IterateForever
-        )
-
         composition?.let {
-            LottieAnimation(
-                it,
-                progress,
-                modifier = Modifier.size(200.dp)
-            )
+            LottieAnimation(it, progress, modifier = Modifier.size(200.dp))
         }
 
-        // App title below animation
         Text(
             text = "Babel",
             fontSize = 48.sp,
-            color = PaleWhite, // Always readable and brand-consistent
+            color = PaleWhite,
             modifier = Modifier
                 .padding(top = 250.dp)
                 .alpha(0.95f)
         )
     }
 
-    // Navigate to Home after delay
     LaunchedEffect(Unit) {
-        delay(3000)
+        delay(1) // let first frame render
+        delay(3000) // animation duration
         if (currentUser != null) {
-
             navController.navigate("biometric") {
                 popUpTo("splash") { inclusive = true }
             }
@@ -114,6 +108,5 @@ fun SplashScreen(navController: NavController, authRepository: AuthRepository = 
                 popUpTo("splash") { inclusive = true }
             }
         }
-
     }
 }
