@@ -74,6 +74,15 @@ class AuthRepository(
     fun signOut() {
         auth.signOut()
     }
+    // ---------------- LOGOUT WITH RESULT ----------------
+    suspend fun logout(): Result<Unit> {
+        return try {
+            auth.signOut()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 
     // ---------------- CURRENT USER ----------------
     fun currentUser(): User? {

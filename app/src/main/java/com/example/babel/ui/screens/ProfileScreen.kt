@@ -1,5 +1,6 @@
 package com.example.babel.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,16 +18,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.babel.ui.components.AnimatedBackground
 import com.example.babel.ui.components.BottomBar
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 @Composable
 fun ProfileScreen(navController: NavController) {
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
     var username by remember { mutableStateOf("Wanderer") }
     var email by remember { mutableStateOf("wanderer@babelverse.com") }
@@ -103,7 +109,15 @@ fun ProfileScreen(navController: NavController) {
                     title = "Logout",
                     icon = Icons.Default.ExitToApp,
                     color = colorScheme.error,
-                    onClick = { /* TODO: Implement logout */ }
+                    onClick = {
+                        scope.launch {
+                            FirebaseAuth.getInstance().signOut()
+                            Toast.makeText(context, "Logged out successfully", Toast.LENGTH_SHORT).show()
+                            navController.navigate("auth") {
+                                popUpTo("profile") { inclusive = true }
+                            }
+                        }
+                    }
                 )
 
                 Spacer(Modifier.height(36.dp))

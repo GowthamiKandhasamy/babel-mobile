@@ -105,7 +105,8 @@ fun SplashScreen(navController: NavController, authRepository: AuthRepository = 
     LaunchedEffect(Unit) {
         delay(3000)
         if (currentUser != null) {
-            navController.navigate("home") {
+
+            navController.navigate("biometric") {
                 popUpTo("splash") { inclusive = true }
             }
         } else {
@@ -113,5 +114,6 @@ fun SplashScreen(navController: NavController, authRepository: AuthRepository = 
                 popUpTo("splash") { inclusive = true }
             }
         }
+
     }
 }

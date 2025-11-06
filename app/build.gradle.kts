@@ -78,4 +78,8 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
+    implementation("androidx.compose.animation:animation:1.7.0")
+// --- Lottie Animations ---
+    implementation("com.airbnb.android:lottie-compose:6.0.0")
 }

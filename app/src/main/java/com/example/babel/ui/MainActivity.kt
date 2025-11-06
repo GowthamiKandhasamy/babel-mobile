@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.babel.ui.screens.AuthScreen
+import com.example.babel.ui.screens.BiometricScreen
 import com.example.babel.ui.screens.BookDetailScreen
 import com.example.babel.ui.screens.ExploreScreen
 import com.example.babel.ui.screens.HomeScreen
@@ -25,9 +26,8 @@ import com.example.babel.ui.screens.SplashScreen
 import com.example.babel.ui.screens.StatsScreen
 import com.example.babel.ui.theme.BabelTheme
 import com.google.firebase.FirebaseApp
-
-
-class MainActivity : ComponentActivity() {
+import androidx.fragment.app.FragmentActivity
+class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
@@ -35,35 +35,17 @@ class MainActivity : ComponentActivity() {
         setContent {
             BabelTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "splash")
-                {
-                    composable("splash") {
-                        SplashScreen(navController)
-                    }
-                    composable("auth"){
-                        AuthScreen(navController)
-                    }
-                    composable("home") {
-                        HomeScreen(navController)
-                    }
-                    composable("library") {
-                        LibraryScreen(navController)
-                    }
-                    composable("explore") {
-                        ExploreScreen(navController)
-                    }
-                    composable("journal") {
-                        JournalScreen(navController)
-                    }
-                    composable("stats"){
-                        StatsScreen(navController)
-                    }
-                    composable("settings"){
-                        SettingsScreen(navController)
-                    }
-                    composable("profile"){
-                        ProfileScreen(navController)
-                    }
+                NavHost(navController = navController, startDestination = "splash") {
+                    composable("splash") { SplashScreen(navController) }
+                    composable("auth") { AuthScreen(navController) }
+                    composable("home") { HomeScreen(navController) }
+                    composable("library") { LibraryScreen(navController) }
+                    composable("biometric") { BiometricScreen(navController) }
+                    composable("explore") { ExploreScreen(navController) }
+                    composable("journal") { JournalScreen(navController) }
+                    composable("stats") { StatsScreen(navController) }
+                    composable("settings") { SettingsScreen(navController) }
+                    composable("profile") { ProfileScreen(navController) }
                     composable(
                         "bookDetail/{bookId}",
                         arguments = listOf(navArgument("bookId") { type = NavType.IntType })
@@ -71,20 +53,15 @@ class MainActivity : ComponentActivity() {
                         val bookId = backStackEntry.arguments?.getInt("bookId") ?: 0
                         BookDetailScreen(navController, bookId)
                     }
-
                 }
             }
         }
     }
-
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+    Text(text = "Hello $name!", modifier = modifier)
 }
 
 @Preview(showBackground = true)
