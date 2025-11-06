@@ -1,4 +1,4 @@
-package com.example.babel.ui.screens
+package com.example.babel.utils
 
 import android.content.Context
 import android.os.Bundle
@@ -30,12 +30,14 @@ class BiometricHelperFragment(
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     onAuthResult(true)
-                    parentFragmentManager.beginTransaction().remove(this@BiometricHelperFragment).commitAllowingStateLoss()
+                    parentFragmentManager.beginTransaction().remove(this@BiometricHelperFragment)
+                        .commitAllowingStateLoss()
                 }
 
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     onAuthResult(false)
-                    parentFragmentManager.beginTransaction().remove(this@BiometricHelperFragment).commitAllowingStateLoss()
+                    parentFragmentManager.beginTransaction().remove(this@BiometricHelperFragment)
+                        .commitAllowingStateLoss()
                 }
 
                 override fun onAuthenticationFailed() {

@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.androidx.runtime)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.biometric.ktx)
 
     // --- Tests ---
     testImplementation(libs.junit)

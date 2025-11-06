@@ -19,6 +19,7 @@ import com.example.babel.ui.theme.Amethyst
 import com.example.babel.ui.theme.DeepPlum
 import com.example.babel.ui.theme.MidnightBlue
 import com.example.babel.ui.theme.SilverAccent
+import com.example.babel.utils.BiometricHelperFragment
 
 @Composable
 fun BiometricScreen(navController: NavController) {

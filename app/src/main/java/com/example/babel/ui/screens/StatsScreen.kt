@@ -311,7 +311,7 @@ fun GenrePieChart(finishedBooks: List<Book>) {
     val colorScheme = MaterialTheme.colorScheme
     // Assuming genre_id is a list of Ints that correspond to genre names/IDs
     // We'll group by the Int and count occurrences.
-    val genreCounts = finishedBooks.flatMap { it.genre_id }.groupingBy { it }.eachCount()
+    val genreCounts = finishedBooks.flatMap { it.genreId }.groupingBy { it }.eachCount()
     val total = genreCounts.values.sum().toFloat()
     val colors = listOf(colorScheme.primary, colorScheme.secondary, colorScheme.tertiary, colorScheme.primaryContainer, colorScheme.secondaryContainer)
 
