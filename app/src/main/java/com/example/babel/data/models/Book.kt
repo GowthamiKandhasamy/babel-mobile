@@ -5,7 +5,8 @@ data class Book(
     val title: String = "",
     val subtitle: String? = null,
     val authors: List<String> = emptyList(),
-    val averageRating: Double? = 0.0,
+    val authorIds: List<String> = emptyList(),
+    val averageRating: Double? = 0.0, // ✅ must be Double?
     val publishedDate: String? = null,
     val isbn10: String? = null,
     val isbn13: String? = null,
@@ -17,4 +18,3 @@ data class Book(
     val language: String? = null,
     val genreId: List<Int> = emptyList()
 )
-

@@ -12,14 +12,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    navController: NavController
+    navController: NavController,
+    onSearchChange: (String) -> Unit
 ) {
     val colorScheme = MaterialTheme.colorScheme
     var searchQuery by remember { mutableStateOf(TextFieldValue("")) }
+    val coroutineScope = rememberCoroutineScope()
+    var searchJob by remember { mutableStateOf<Job?>(null) }
 
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
@@ -30,7 +36,14 @@ fun TopBar(
         title = {
             TextField(
                 value = searchQuery,
-                onValueChange = { searchQuery = it },
+                onValueChange = {
+                    searchQuery = it
+                    searchJob?.cancel()
+                    searchJob = coroutineScope.launch {
+                        delay(300)
+                        onSearchChange(it.text)
+                    }
+                },
                 placeholder = {
                     Text(
                         "Search books...",
@@ -45,11 +58,25 @@ fun TopBar(
                         tint = colorScheme.onPrimary
                     )
                 },
+                trailingIcon = {
+                    if (searchQuery.text.isNotEmpty()) {
+                        IconButton(onClick = {
+                            searchQuery = TextFieldValue("")
+                            onSearchChange("")
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = "Clear",
+                                tint = colorScheme.onPrimary
+                            )
+                        }
+                    }
+                },
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(48.dp) // slightly taller for better visibility
-                    .clip(RoundedCornerShape(8.dp)), // slightly less rounded
+                    .height(48.dp)
+                    .clip(RoundedCornerShape(8.dp)),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = colorScheme.surfaceVariant.copy(alpha = 0.6f),
                     unfocusedContainerColor = colorScheme.surfaceVariant.copy(alpha = 0.4f),
@@ -73,6 +100,7 @@ fun TopBar(
         }
     )
 }
+
 
 @Composable
 fun BottomBar(

@@ -1,6 +1,12 @@
 package com.example.babel.ui.screens
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +20,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -32,43 +39,65 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.babel.data.models.Book
+import com.example.babel.data.viewmodel.BookViewModel
 import com.example.babel.ui.components.AddBookDialog
 import com.example.babel.ui.components.AnimatedBackground
 import com.example.babel.ui.components.BookCarousel
 import com.example.babel.ui.components.BottomBar
+import com.example.babel.ui.components.TopBar
 import com.example.babel.ui.viewmodel.LibraryViewModel
 import com.google.firebase.auth.FirebaseAuth
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LibraryScreen(navController: NavController, viewModel: LibraryViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
-    val uiState by viewModel.uiState.collectAsState()
+fun LibraryScreen(
+    navController: NavController,
+    libraryViewModel: LibraryViewModel = viewModel(),
+    bookViewModel: BookViewModel = viewModel()
+) {
+    val uiState by libraryViewModel.uiState.collectAsState()
+    val searchResults by bookViewModel.bookList.collectAsState()
+    val isBookLoading by bookViewModel.isLoading.collectAsState()
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
     val scrollState = rememberScrollState()
-    val context = LocalContext.current
+
     val currentUser = FirebaseAuth.getInstance().currentUser
     val uid = currentUser?.uid ?: return
 
     var showAddDialog by remember { mutableStateOf(false) }
+    var isSearching by remember { mutableStateOf(false) }
 
     LaunchedEffect(uid) {
-        viewModel.loadLibrary(uid)
+        libraryViewModel.loadLibrary(uid)
     }
 
     Scaffold(
-        containerColor = colorScheme.background,
+        topBar = {
+            TopBar(
+                navController = navController,
+                onSearchChange = { query ->
+                    isSearching = query.isNotBlank()
+                    bookViewModel.searchBooks(query)
+                }
+            )
+        },
         bottomBar = { BottomBar(navController) },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { showAddDialog = true },
-                containerColor = colorScheme.primary,
-                contentColor = colorScheme.onPrimary
-            ) {
-                Icon(Icons.Filled.Add, contentDescription = "Add Book")
+            if (!isSearching) {
+                FloatingActionButton(
+                    onClick = { showAddDialog = true },
+                    containerColor = colorScheme.primary,
+                    contentColor = colorScheme.onPrimary
+                ) {
+                    Icon(Icons.Filled.Add, contentDescription = "Add Book")
+                }
             }
-        }
+        },
+        containerColor = colorScheme.background
     ) { paddingValues ->
         Box(
             modifier = Modifier
@@ -77,54 +106,91 @@ fun LibraryScreen(navController: NavController, viewModel: LibraryViewModel = an
         ) {
             AnimatedBackground()
 
-            if (uiState.isLoading) {
-                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = colorScheme.primary)
-                }
-            } else if (uiState.error != null) {
-                Text("Error: ${uiState.error}", color = colorScheme.error)
-            } else {
-                val library = uiState.library
-                val allBooks = uiState.allBooks
+            AnimatedContent(
+                targetState = isSearching,
+                transitionSpec = {
+                    fadeIn(animationSpec = tween(400)) togetherWith fadeOut(animationSpec = tween(300))
+                },
+                label = "library_search_transition"
+            ) { searching ->
+                if (searching) {
+                    when {
+                        isBookLoading -> {
+                            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                CircularProgressIndicator(color = colorScheme.primary)
+                            }
+                        }
 
-                Column(
-                    modifier = Modifier
-                        .verticalScroll(scrollState)
-                        .padding(16.dp)
-                ) {
-                    Text(
-                        text = "Your Library",
-                        style = typography.headlineSmall,
-                        color = colorScheme.onBackground,
-                        modifier = Modifier.padding(bottom = 16.dp)
-                    )
+                        searchResults.isEmpty() -> {
+                            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                Text(
+                                    "No results found.",
+                                    color = colorScheme.onBackground.copy(alpha = 0.8f)
+                                )
+                            }
+                        }
 
-                    LibraryShelf(
-                        title = "Currently Reading",
-                        bookIds = library?.currentlyReading ?: emptyList(),
-                        allBooks = allBooks,
-                        navController = navController
-                    )
+                        else -> {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(16.dp)
+                                    .verticalScroll(rememberScrollState()),
+                                verticalArrangement = Arrangement.spacedBy(24.dp)
+                            ) {
+                                BookCarousel(
+                                    title = "Search Results",
+                                    books = searchResults,
+                                    navController = navController
+                                )
+                            }
+                        }
+                    }
+                } else {
+                    if (uiState.isLoading) {
+                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator(color = colorScheme.primary)
+                        }
+                    } else if (uiState.error != null) {
+                        Text("Error: ${uiState.error}", color = colorScheme.error)
+                    } else {
+                        val library = uiState.library
+                        val allBooks = uiState.allBooks
+                        Column(
+                            modifier = Modifier
+                                .verticalScroll(scrollState)
+                                .padding(16.dp)
+                        ) {
+                            Text(
+                                text = "Your Library",
+                                style = typography.headlineSmall,
+                                color = colorScheme.onBackground,
+                                modifier = Modifier.padding(bottom = 16.dp)
+                            )
 
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    LibraryShelf(
-                        title = "Want to Read",
-                        bookIds = library?.wantToRead ?: emptyList(),
-                        allBooks = allBooks,
-                        navController = navController
-                    )
-
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    LibraryShelf(
-                        title = "Finished Reading",
-                        bookIds = library?.finishedReading ?: emptyList(),
-                        allBooks = allBooks,
-                        navController = navController
-                    )
-
-                    Spacer(modifier = Modifier.height(80.dp))
+                            LibraryShelf(
+                                title = "Currently Reading",
+                                bookIds = library?.currentlyReading ?: emptyList(),
+                                allBooks = allBooks,
+                                navController = navController
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+                            LibraryShelf(
+                                title = "Want to Read",
+                                bookIds = library?.wantToRead ?: emptyList(),
+                                allBooks = allBooks,
+                                navController = navController
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+                            LibraryShelf(
+                                title = "Finished Reading",
+                                bookIds = library?.finishedReading ?: emptyList(),
+                                allBooks = allBooks,
+                                navController = navController
+                            )
+                            Spacer(modifier = Modifier.height(80.dp))
+                        }
+                    }
                 }
             }
 
@@ -133,7 +199,7 @@ fun LibraryScreen(navController: NavController, viewModel: LibraryViewModel = an
                     books = uiState.allBooks,
                     onDismiss = { showAddDialog = false },
                     onSave = { bookId, shelf ->
-                        viewModel.addBook(uid, bookId, shelf)
+                        libraryViewModel.addBook(uid, bookId, shelf)
                         showAddDialog = false
                     }
                 )
@@ -141,7 +207,6 @@ fun LibraryScreen(navController: NavController, viewModel: LibraryViewModel = an
         }
     }
 }
-
 
 @Composable
 fun LibraryShelf(

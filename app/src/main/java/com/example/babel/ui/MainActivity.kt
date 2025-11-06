@@ -48,9 +48,9 @@ class MainActivity : FragmentActivity() {
                     composable("profile") { ProfileScreen(navController) }
                     composable(
                         "bookDetail/{bookId}",
-                        arguments = listOf(navArgument("bookId") { type = NavType.IntType })
+                        arguments = listOf(navArgument("bookId") { type = NavType.LongType })
                     ) { backStackEntry ->
-                        val bookId = backStackEntry.arguments?.getInt("bookId") ?: 0
+                        val bookId = backStackEntry.arguments?.getLong("bookId") ?: 0
                         BookDetailScreen(navController, bookId)
                     }
                 }

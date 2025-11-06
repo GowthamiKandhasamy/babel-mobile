@@ -1,8 +1,21 @@
 package com.example.babel.ui.screens
 
+import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,8 +24,24 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Create
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material.icons.outlined.ThumbUp
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,31 +52,49 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.babel.data.local.BookLoader
+import com.example.babel.data.models.Book
+import com.example.babel.data.repository.BookRepository
+import com.example.babel.data.viewmodel.BookViewModel
+import com.example.babel.domain.usecases.RatingUseCase
 import com.example.babel.ui.components.AddBookDialog
 import com.example.babel.ui.components.BookCarousel
-import com.example.babel.ui.components.TopBar
 import com.example.babel.ui.components.BottomBar
+import com.example.babel.ui.components.TopBar
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BookDetailScreen(navController: NavController, bookId: Int) {
+fun BookDetailScreen(navController: NavController, bookId: Long, bookViewModel: BookViewModel = viewModel()) {
     val context = LocalContext.current
     val books = remember { BookLoader.loadSampleBooks(context) }
     val book = books.find { it.id == bookId.toLong() }
+    val repo = remember { BookRepository() }
+
+    val relatedBooks by produceState(initialValue = emptyList<Book>(), key1 = bookId) {
+        value = book?.let { repo.getBooksByAuthor(it.authorIds, it.id) } ?: emptyList()
+    }
+
+    val similarBooks by produceState(initialValue = emptyList<Book>(), key1 = bookId) {
+        value = book?.let { repo.getSimilarBooks(it) } ?: emptyList()
+    }
 
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
     var showAddDialog by remember { mutableStateOf(false) }
     var selectedShelf by remember { mutableStateOf("Finished Reading?") }
+    var showRateDialog by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { TopBar(navController) },
+        topBar = { TopBar(navController, onSearchChange = { query ->
+            bookViewModel.searchBooks(query)
+        }) },
         bottomBar = { BottomBar(navController) },
-        containerColor = colorScheme . background
+        containerColor = colorScheme.background
     ) { paddingValues ->
         book?.let {
             LazyColumn(
@@ -72,7 +119,8 @@ fun BookDetailScreen(navController: NavController, bookId: Int) {
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
-                        // Gradient starts lower and is lighter
+
+                        // Gradient overlay
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
@@ -111,7 +159,7 @@ fun BookDetailScreen(navController: NavController, bookId: Int) {
 
                     Column(modifier = Modifier.padding(16.dp)) {
                         // --- Rating Summary ---
-                        RatingSummaryRow(average = 4.2f, totalRatings = 2350, totalReviews = 420)
+                        RatingSummaryRow(average = book.averageRating?.toFloat() ?: 4.0f, totalRatings = 2350, totalReviews = 420)
                         Spacer(Modifier.height(20.dp))
 
                         // --- Add to Shelf (Dropdown Style) ---
@@ -136,11 +184,11 @@ fun BookDetailScreen(navController: NavController, bookId: Int) {
                                         .width(220.dp),
                                     colors = OutlinedTextFieldDefaults.colors(
                                         focusedTextColor = colorScheme.onSurface,
-                                        unfocusedTextColor = colorScheme.onSurface,
+                                        unfocusedTextColor = colorScheme.primary, // fixed
                                         focusedContainerColor = Color.Transparent,
                                         unfocusedContainerColor = Color.Transparent,
                                         focusedBorderColor = colorScheme.primary,
-                                        unfocusedBorderColor = colorScheme.secondary
+                                        unfocusedBorderColor = colorScheme.primary
                                     )
                                 )
                             }
@@ -155,12 +203,10 @@ fun BookDetailScreen(navController: NavController, bookId: Int) {
                                 },
                                 onSave = { bookId, shelf ->
                                     // TODO: integrate with LibraryViewModel
-                                    // For now, you can just log or show a toast until backend connected
                                     showAddDialog = false
                                 }
                             )
                         }
-
 
                         Spacer(Modifier.height(16.dp))
 
@@ -170,15 +216,29 @@ fun BookDetailScreen(navController: NavController, bookId: Int) {
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(12.dp))
                                     .background(colorScheme.tertiaryContainer)
-                                    .clickable { /* TODO: Rating Dialog */ }
+                                    .clickable { showRateDialog = true }
                                     .padding(horizontal = 24.dp, vertical = 10.dp)
                             ) {
-                                Text(
-                                    "Rate this Book",
-                                    style = typography.bodyMedium.copy(color = colorScheme.primary)
-                                )
+                                Text("Rate this Book", style = typography.bodyMedium.copy(color = colorScheme.primary))
                             }
                         }
+
+                        if (showRateDialog) {
+                            val useCase = remember { RatingUseCase() }
+                            val scope = rememberCoroutineScope()
+
+                            RateBookDialog(
+                                bookId = book.id,
+                                onDismiss = { showRateDialog = false },
+                                onSubmit = { stars, comment ->
+                                    scope.launch {
+                                        useCase.submitRating(book, stars, comment)
+                                    }
+                                    showRateDialog = false
+                                }
+                            )
+                        }
+
 
                         Spacer(Modifier.height(12.dp))
 
@@ -188,13 +248,27 @@ fun BookDetailScreen(navController: NavController, bookId: Int) {
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(12.dp))
                                     .background(colorScheme.tertiaryContainer)
-                                    .clickable { /* TODO: Rating Dialog */ }
+                                    .clickable {
+                                        val isbn = book.isbn13 ?: book.isbn10
+                                        if (isbn.isNullOrBlank()) {
+                                            Toast.makeText(context, "No ISBN available for preview", Toast.LENGTH_SHORT).show()
+                                            return@clickable
+                                        }
+
+                                        val previewUrl = "https://www.google.com/search?tbm=bks&q=isbn:$isbn"
+                                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(previewUrl)).apply {
+                                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        }
+
+                                        try {
+                                            context.startActivity(intent)
+                                        } catch (e: Exception) {
+                                            Toast.makeText(context, "Could not open preview", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
                                     .padding(horizontal = 24.dp, vertical = 10.dp)
                             ) {
-                                Text(
-                                    "Preview",
-                                    style = typography.bodyMedium.copy(color = colorScheme.onTertiaryContainer)
-                                )
+                                Text("Preview", style = typography.bodyMedium.copy(color = colorScheme.onTertiaryContainer))
                             }
                         }
 
@@ -244,15 +318,16 @@ fun BookDetailScreen(navController: NavController, bookId: Int) {
                         // --- Carousels ---
                         BookCarousel(
                             title = "Other Books by this Author",
-                            books = books.shuffled().take(6),
+                            books = relatedBooks,
                             navController = navController
                         )
                         Spacer(Modifier.height(24.dp))
                         BookCarousel(
                             title = "Readers Also Enjoyed",
-                            books = books.shuffled().take(6),
+                            books = similarBooks,
                             navController = navController
                         )
+
                         Spacer(Modifier.height(60.dp))
                     }
                 }
@@ -265,6 +340,8 @@ fun BookDetailScreen(navController: NavController, bookId: Int) {
     }
 }
 
+// ---------------- Supporting Composables ---------------- //
+
 @Composable
 fun RatingSummaryRow(average: Float, totalRatings: Int, totalReviews: Int) {
     val colorScheme = MaterialTheme.colorScheme
@@ -275,14 +352,10 @@ fun RatingSummaryRow(average: Float, totalRatings: Int, totalReviews: Int) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth()
     ) {
-        repeat(filledStars) {
-            Icon(Icons.Filled.Star, null, tint = colorScheme.tertiary)
-        }
-        repeat(emptyStars) {
-            Icon(Icons.Outlined.Star, null, tint = colorScheme.onSurfaceVariant)
-        }
+        repeat(filledStars) { Icon(Icons.Filled.Star, null, tint = colorScheme.tertiary) }
+        repeat(emptyStars) { Icon(Icons.Outlined.Star, null, tint = colorScheme.onSurfaceVariant) }
         Text(
             text = String.format("%.1f", average),
             style = typography.bodyMedium.copy(color = colorScheme.onSurface),
@@ -383,7 +456,6 @@ fun ReviewCard(user: String, rating: Int, text: String) {
     )
 
     Column(
-
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
@@ -391,7 +463,6 @@ fun ReviewCard(user: String, rating: Int, text: String) {
             .padding(12.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-
             Box(
                 modifier = Modifier
                     .size(36.dp)
@@ -416,16 +487,60 @@ fun ReviewCard(user: String, rating: Int, text: String) {
                 }
             }
         }
-
         Spacer(Modifier.height(8.dp))
-        Text(
-            text = text,
-            style = typography.bodySmall.copy(color = colorScheme.onSurfaceVariant)
-        )
+        Text(text = text, style = typography.bodySmall.copy(color = colorScheme.secondary))
         Spacer(Modifier.height(8.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Icon(Icons.Outlined.ThumbUp, contentDescription = null, tint = colorScheme.primary, modifier = Modifier.size(18.dp))
             Icon(Icons.Outlined.Create, contentDescription = null, tint = colorScheme.primary, modifier = Modifier.size(18.dp))
         }
     }
+}
+
+@Composable
+fun RateBookDialog(
+    bookId: Long,
+    onDismiss: () -> Unit,
+    onSubmit: (Int, String) -> Unit
+) {
+    var rating by remember { mutableStateOf(0) }
+    var comment by remember { mutableStateOf("") }
+    val colorScheme = MaterialTheme.colorScheme
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Rate this Book") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
+                    (1..5).forEach { i ->
+                        Icon(
+                            imageVector = if (i <= rating) Icons.Filled.Star else Icons.Outlined.Star,
+                            contentDescription = null,
+                            tint = if (i <= rating) colorScheme.tertiary else colorScheme.onSurfaceVariant,
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clickable { rating = i }
+                        )
+                    }
+                }
+                OutlinedTextField(
+                    value = comment,
+                    onValueChange = { comment = it },
+                    label = { Text("Optional comment") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onSubmit(rating, comment) }) {
+                Text("Submit", color = colorScheme.primary)
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel", color = colorScheme.secondary)
+            }
+        }
+    )
 }

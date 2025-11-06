@@ -15,10 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -36,13 +33,11 @@ import com.example.babel.data.repository.AuthRepository
 import com.example.babel.ui.theme.Amethyst
 import com.example.babel.ui.theme.DeepPlum
 import com.example.babel.ui.theme.MidnightBlue
-import com.example.babel.ui.theme.SilverAccent
 import com.example.babel.ui.theme.PaleWhite
+import com.example.babel.ui.theme.SilverAccent
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
 
 @Composable
 fun SplashScreen(

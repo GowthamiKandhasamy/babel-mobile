@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.androidx.runtime)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.biometric.ktx)
+    implementation(libs.androidx.foundation)
 
     // --- Tests ---
     testImplementation(libs.junit)
