@@ -6,7 +6,7 @@ data class Book(
     val subtitle: String? = null,
     val authors: List<String> = emptyList(),
     val authorIds: List<String> = emptyList(),
-    val averageRating: Double? = 0.0, // ✅ must be Double?
+    val averageRating: Double? = 0.0,
     val publishedDate: String? = null,
     val isbn10: String? = null,
     val isbn13: String? = null,
