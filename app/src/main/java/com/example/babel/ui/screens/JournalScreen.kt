@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -45,34 +46,31 @@ fun JournalScreen(
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
     val formatter = remember { SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault()) }
+    val context = LocalContext.current
 
     val viewModel: JournalViewModel = viewModel()
+    LaunchedEffect(Unit) {
+        viewModel.initLocal(context)
+        viewModel.loadUserJournals(uid)
+    }
+
     val state by viewModel.uiState.collectAsState()
 
     var showAddDialog by remember { mutableStateOf(false) }
     var editingEntry by remember { mutableStateOf<JournalEntry?>(null) }
 
-    // Local fallback data for preview/testing
-    val localFallback = remember {
-        listOf(
-            JournalEntry("1", "“A night in Gondor and I still can't sleep.” – Elara", "10 Oct 2025, 09:23 PM"),
-            JournalEntry("2", "“When the last page turns, a part of me stays behind.” – Rowan", "02 Oct 2025, 07:42 PM"),
-            JournalEntry("3", "“Jane Austen still ruins men for me.” – Mira", "30 Sep 2025, 11:01 AM")
+    val remoteJournals = state.journals.map {
+        JournalEntry(
+            id = it.id,
+            content = it.content,
+            date = formatter.format(Date(it.createdAt)),
+            visibility = it.visibility
         )
     }
 
-    // Combine local + backend data (if available)
-    val journals: List<JournalEntry> =
-        if (state.journals.isNotEmpty())
-            state.journals.map {
-                JournalEntry(
-                    id = it.id,
-                    content = it.content,
-                    date = formatter.format(Date(it.createdAt)),
-                    visibility = it.visibility
-                )
-            }
-        else localFallback
+    val localJournals = state.localJournals
+
+    val combinedJournals = (localJournals + remoteJournals).sortedByDescending { it.date }
 
     Scaffold(
         containerColor = colorScheme.background,
@@ -111,19 +109,21 @@ fun JournalScreen(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    items(journals, key = { it.id }) { entry ->
+                    items(combinedJournals, key = { it.id }) { entry ->
                         JournalCard(
                             entry = entry,
                             onEdit = { editingEntry = entry },
                             onDelete = {
-                                viewModel.deleteJournal(entry.id, uid)
+                                if (state.localJournals.any { it.id == entry.id })
+                                    viewModel.deleteLocalJournal(entry.id)
+                                else
+                                    viewModel.deleteJournal(entry.id, uid)
                             }
                         )
                     }
                 }
             }
 
-            // --- Add Dialog ---
             if (showAddDialog) {
                 AddNoteDialog(
                     onDismiss = { showAddDialog = false },
@@ -133,18 +133,22 @@ fun JournalScreen(
                             content = newText,
                             date = formatter.format(Date())
                         )
-                        viewModel.addJournal(uid, newEntry.content, "private")
+                        // save locally
+                        viewModel.addLocalJournal(newEntry)
                         showAddDialog = false
                     }
                 )
             }
 
-            // --- Edit Dialog ---
             editingEntry?.let { entry ->
                 AddNoteDialog(
                     onDismiss = { editingEntry = null },
                     onSave = { updatedText ->
-                        viewModel.editJournal(entry.id, updatedText, entry.visibility, uid)
+                        val updated = entry.copy(content = updatedText)
+                        if (state.localJournals.any { it.id == entry.id })
+                            viewModel.editLocalJournal(updated)
+                        else
+                            viewModel.editJournal(entry.id, updatedText, entry.visibility, uid)
                         editingEntry = null
                     },
                     initialText = entry.content
@@ -153,6 +157,7 @@ fun JournalScreen(
         }
     }
 }
+
 
 @Composable
 fun JournalCard(entry: JournalEntry, onEdit: () -> Unit, onDelete: () -> Unit) {
