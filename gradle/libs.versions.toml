@@ -21,6 +21,8 @@ runtimeVersion = "1.9.4"
 material3 = "1.4.0"
 biometricKtx = "1.1.0"
 foundationVersion = "1.9.4"
+volley = "1.2.1"
+animation = "1.9.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -54,6 +56,8 @@ androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", versi
 androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 androidx-biometric-ktx = { group = "androidx.biometric", name = "biometric-ktx", version.ref = "biometricKtx" }
 androidx-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundationVersion" }
+volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
+androidx-compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "animation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

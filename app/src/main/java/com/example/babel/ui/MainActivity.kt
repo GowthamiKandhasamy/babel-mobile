@@ -41,7 +41,7 @@ class MainActivity : FragmentActivity() {
                     composable("home") { HomeScreen(navController) }
                     composable("library") { LibraryScreen(navController) }
                     composable("biometric") { BiometricScreen(navController) }
-                    composable("explore") { ExploreScreen(navController) }
+                    composable("explore") { ExploreScreen(navController, apiKey = "0a69a41f0e43ceb3a89ab79ddb8cc4d5") }
                     composable("journal") { JournalScreen(navController) }
                     composable("stats") { StatsScreen(navController) }
                     composable("settings") { SettingsScreen(navController) }

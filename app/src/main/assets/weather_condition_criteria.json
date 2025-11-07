@@ -1,0 +1,167 @@
+[
+  {
+    "condition": "Clear",
+    "criteria": {
+      "weather_main": ["Clear"],
+      "temp_min": 20,
+      "temp_max": 35,
+      "humidity_min": 0,
+      "humidity_max": 60,
+      "wind_min": 0,
+      "wind_max": 10,
+      "cloudiness_max": 10
+    }
+  },
+  {
+    "condition": "Sunny",
+    "criteria": {
+      "weather_main": ["Clear"],
+      "temp_min": 30,
+      "temp_max": 45,
+      "humidity_min": 0,
+      "humidity_max": 50,
+      "wind_min": 0,
+      "wind_max": 15,
+      "cloudiness_max": 20
+    }
+  },
+  {
+    "condition": "Rain",
+    "criteria": {
+      "weather_main": ["Rain"],
+      "temp_min": 15,
+      "temp_max": 35,
+      "humidity_min": 70,
+      "humidity_max": 100,
+      "wind_min": 0,
+      "wind_max": 20
+    }
+  },
+  {
+    "condition": "Drizzle",
+    "criteria": {
+      "weather_main": ["Drizzle"],
+      "temp_min": 15,
+      "temp_max": 30,
+      "humidity_min": 65,
+      "humidity_max": 100,
+      "wind_min": 0,
+      "wind_max": 15
+    }
+  },
+  {
+    "condition": "Thunderstorm",
+    "criteria": {
+      "weather_main": ["Thunderstorm"],
+      "temp_min": 20,
+      "temp_max": 35,
+      "humidity_min": 70,
+      "humidity_max": 100,
+      "wind_min": 15,
+      "wind_max": 50
+    }
+  },
+  {
+    "condition": "Clouds",
+    "criteria": {
+      "weather_main": ["Clouds"],
+      "temp_min": 20,
+      "temp_max": 35,
+      "humidity_min": 50,
+      "humidity_max": 90,
+      "wind_min": 0,
+      "wind_max": 15,
+      "cloudiness_min": 20,
+      "cloudiness_max": 90
+    }
+  },
+  {
+    "condition": "Fog",
+    "criteria": {
+      "weather_main": ["Fog", "Mist"],
+      "temp_min": 10,
+      "temp_max": 25,
+      "humidity_min": 80,
+      "humidity_max": 100,
+      "wind_min": 0,
+      "wind_max": 5,
+      "cloudiness_max": 50
+    }
+  },
+  {
+    "condition": "Haze",
+    "criteria": {
+      "weather_main": ["Haze", "Smoke", "Dust", "Sand"],
+      "temp_min": 25,
+      "temp_max": 40,
+      "humidity_min": 40,
+      "humidity_max": 70,
+      "wind_min": 0,
+      "wind_max": 15
+    }
+  },
+  {
+    "condition": "Windy",
+    "criteria": {
+      "wind_min": 15,
+      "wind_max": 50
+    }
+  },
+  {
+    "condition": "Cold",
+    "criteria": {
+      "temp_max": 15
+    }
+  },
+  {
+    "condition": "Hot",
+    "criteria": {
+      "temp_min": 35
+    }
+  },
+  {
+    "condition": "Snow",
+    "criteria": {
+      "weather_main": ["Snow"],
+      "temp_min": -10,
+      "temp_max": 5,
+      "humidity_min": 60,
+      "humidity_max": 100
+    }
+  },
+  {
+    "condition": "Overcast",
+    "criteria": {
+      "weather_main": ["Clouds"],
+      "temp_min": 20,
+      "temp_max": 30,
+      "humidity_min": 70,
+      "humidity_max": 100,
+      "wind_min": 0,
+      "wind_max": 15,
+      "cloudiness_min": 80,
+      "cloudiness_max": 100
+    }
+  },
+  {
+    "condition": "Storm",
+    "criteria": {
+      "weather_main": ["Thunderstorm", "Rain"],
+      "temp_min": 20,
+      "temp_max": 35,
+      "humidity_min": 70,
+      "humidity_max": 100,
+      "wind_min": 15,
+      "wind_max": 50
+    }
+  },
+  {
+    "condition": "Humid",
+    "criteria": {
+      "humidity_min": 70,
+      "humidity_max": 100,
+      "temp_min": 20,
+      "temp_max": 35
+    }
+  }
+]

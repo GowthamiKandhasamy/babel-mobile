@@ -71,6 +71,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.biometric.ktx)
     implementation(libs.androidx.foundation)
+    implementation(libs.volley)
+    implementation(libs.androidx.compose.animation)
 
     // --- Tests ---
     testImplementation(libs.junit)
