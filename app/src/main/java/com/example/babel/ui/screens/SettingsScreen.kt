@@ -19,17 +19,30 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.compose.ui.platform.LocalContext
 import com.example.babel.ui.components.AnimatedBackground
 import com.example.babel.ui.components.BottomBar
+import com.example.babel.utils.NotificationPreferenceManager
+import androidx.compose.ui.platform.LocalContext
+
 
 @Composable
 fun SettingsScreen(navController: NavController) {
+    val context = LocalContext.current
     val colorScheme = MaterialTheme.colorScheme
     val typography = MaterialTheme.typography
-
+    val apiKey = "0a69a41f0e43ceb3a89ab79ddb8cc4d5"
+    val notificationPrefManager = remember { NotificationPreferenceManager(context) }
     var darkMode by remember { mutableStateOf(true) }
-    var notificationsEnabled by remember { mutableStateOf(true) }
+
     var language by remember { mutableStateOf("English") }
+    var notificationsEnabled by remember {
+        mutableStateOf(notificationPrefManager.areNotificationsEnabled())
+    }
+
+    LaunchedEffect(Unit) {
+        notificationsEnabled = notificationPrefManager.areNotificationsEnabled()
+    }
 
     Scaffold(
         containerColor = colorScheme.background,
@@ -68,7 +81,10 @@ fun SettingsScreen(navController: NavController) {
                     title = "Enable Notifications",
                     icon = Icons.Default.Notifications,
                     checked = notificationsEnabled,
-                    onCheckedChange = { notificationsEnabled = it }
+                    onCheckedChange = {
+                        notificationsEnabled = it
+                        notificationPrefManager.setNotificationsEnabled(it, apiKey)
+                    }
                 )
 
                 SettingDropdownItem(

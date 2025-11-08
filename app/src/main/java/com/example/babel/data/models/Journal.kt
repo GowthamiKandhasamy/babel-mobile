@@ -1,5 +1,5 @@
 package com.example.babel.data.models
-
+import com.google.firebase.Timestamp
 data class Journal(
     val id: String = "",
     val ownerId: String = "",

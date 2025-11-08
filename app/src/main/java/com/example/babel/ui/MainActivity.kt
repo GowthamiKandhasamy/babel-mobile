@@ -27,11 +27,35 @@ import com.example.babel.ui.screens.StatsScreen
 import com.example.babel.ui.theme.BabelTheme
 import com.google.firebase.FirebaseApp
 import androidx.fragment.app.FragmentActivity
+import com.example.babel.utils.EncryptedLocationManager
+import com.example.babel.utils.NotificationPreferenceManager
+import com.example.babel.utils.WeatherBookNotifier
+import com.google.firebase.auth.FirebaseAuth
+
+
 class MainActivity : FragmentActivity() {
+    private var weatherNotifier: WeatherBookNotifier? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
         enableEdgeToEdge()
+        val prefManager = NotificationPreferenceManager(this)
+        val apiKey = "0a69a41f0e43ceb3a89ab79ddb8cc4d5"
+        prefManager.resumeIfEnabled(apiKey)
+        val encryptedLocationManager = EncryptedLocationManager(this)
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            encryptedLocationManager.fetchAndStoreEncryptedLocation()
+        }
+        FirebaseAuth.getInstance().addAuthStateListener { auth ->
+            val currentUser = auth.currentUser
+            if (currentUser != null) {
+                encryptedLocationManager.fetchAndStoreEncryptedLocation()
+            } else {
+                // Optional: handle logout
+            }
+        }
         setContent {
             BabelTheme {
                 val navController = rememberNavController()
